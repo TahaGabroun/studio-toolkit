@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Toolkit deterministic intro</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d1626;color:#f3f5f6;font-family:Arial,'Noto Sans Arabic','DejaVu Sans',sans-serif}
+.stage{width:100vw;height:100vh;position:relative;overflow:hidden;background:radial-gradient(ellipse at 75% 25%,#233a53 0%,#0d1626 56%)}
+.ring{border:2px solid #87bebf;border-radius:50%;position:absolute;left:50%;top:50%;width:300px;height:300px;transform:translate(-50%,-50%);opacity:.7}
+.message{position:absolute;left:8%;right:8%;top:32%;text-align:center;font-weight:700;font-size:clamp(40px,6.5vw,108px);line-height:1.15;letter-spacing:-.02em}
+.sub{position:absolute;left:12%;right:12%;top:66%;font-size:clamp(16px,2.5vw,34px);text-align:center;color:#a2caca}
+.small{position:absolute;left:4%;bottom:5%;letter-spacing:.16em;text-transform:uppercase;font-size:15px;color:#8499ad}
+</style></head><body><div class="stage">
+<div class="ring" id="ring"></div><div class="message" id="message"></div><div class="sub" id="sub"></div><div class="small">Studio Toolkit · frame-exact demo</div>
+</div>
+<script>
+function clamp(x,min,max){return Math.max(min,Math.min(max,x))}
+function ease(x){x=clamp(x,0,1);return 1-Math.pow(1-x,3)}
+const ring=document.getElementById('ring'),message=document.getElementById('message'),sub=document.getElementById('sub');
+window.seek=async function(t){
+  const first=t<3.2;
+  message.textContent=first?'An idea becomes a story':'فكرة تتحوّل إلى قصة';
+  message.lang=first?'en':'ar';message.dir=first?'ltr':'rtl';
+  sub.textContent=first?'Script · Visuals · Sound · Evidence':'نصّ · صورة · صوت · دليل';
+  sub.lang=first?'en':'ar';sub.dir=first?'ltr':'rtl';
+  const k=ease((t-(first?0:3.2))/.9);
+  const alpha=clamp(k*1.4,0,1);
+  message.style.opacity=alpha.toFixed(4);
+  message.style.transform=`translateY(${Math.round((1-k)*40)}px)`;
+  sub.style.opacity=clamp((k-.3)*1.7,0,1).toFixed(4);
+  const scale=1+t*.045;
+  ring.style.transform=`translate(-50%,-50%) rotate(${(t*13).toFixed(3)}deg) scale(${scale.toFixed(4)})`;
+  ring.style.opacity=(.22+.25*Math.sin(t*.9)*Math.sin(t*.9)).toFixed(3);
+};
+window.seek(0);
+</script></body></html>

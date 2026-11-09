@@ -1,0 +1,4 @@
+interface:
+  display_name: "Motion Design"
+  short_description: "Create deterministic HTML/CSS/SVG/JavaScript animations and "
+  default_prompt: "Use $motion-design to complete the relevant Studio Toolkit production task."

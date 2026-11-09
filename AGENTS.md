@@ -1,0 +1,9 @@
+# Working on Studio Toolkit
+
+Preserve the nine canonical IDs in manifest.json and route historical IDs through the documented aliases. Keep skills concise, with real supporting scripts and references. No Claude tools, hidden private paths or paid service assumptions.
+
+Production artifacts use the schemas shipped under skills/studio-toolkit/references/schemas; repository schemas/ mirrors them for external clients. Update both and run validation. Timing is integer frames, half-open intervals, nearest-frame half-up conversion at measured audio ingestion. Never present ASR estimates as forced alignment or structural QA as creative approval.
+
+Run `.venv/bin/python scripts/validate_repository.py` and `.venv/bin/python -m unittest discover -s tests -v`. Changes to renderers also require a real representative render and frame inspection. Preserve MIT notices when modifying adopted code; record exact upstream commit and modifications in SOURCES.md. Do not redistribute branded upstream videos/assets merely because the repository code is MIT.
+
+Public contents must exclude dependency folders, caches, absolute private paths, secrets and local installation links. Honor user authorization already given for publishing. No force push or replacement of unrelated work.

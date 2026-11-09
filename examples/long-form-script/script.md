@@ -1,0 +1,79 @@
+# Why a tree is built from air
+
+Audience: curious nonspecialists. Voice: clear, conversational science.
+
+Three candidate hooks: the vanishing-soil puzzle; one carbon atom travelling backwards; a close-up of a heavy log beside air. Selected: the atom-tracking puzzle, because it can be repaid visually.
+
+Runtime: estimated, not audio aligned. 636 spoken words; [238.5, 293.5] seconds at 130–160 English words/minute. Add deliberate diagram holds during recording.
+
+Retention structure: question → matter/energy distinction → journey → energy cost → fixation payoff → transport complication → structure → return to opening. No early CTA.
+
+## scene-1: Where did the wood come from? (0.0–30.2s, estimate)
+
+Look at a tree trunk. Every year it can become wider, taller, and heavier. The intuitive answer is that the tree must be eating the ground beneath it. Yet that leaves a puzzle: how does something as substantial as wood emerge from a thin stream of water and an almost invisible gas? Follow one carbon atom, and the puzzle becomes a story about materials, energy, and a leaf doing chemistry in plain sight.
+
+[VISUAL: Start on an original tree silhouette. Pull one carbon atom out of a trunk ring; trace it backwards toward a leaf.]
+
+Source: https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis
+
+## scene-2: Separate the materials from the energy. (30.2–61.7s, estimate)
+
+Before following the atom, separate two questions. What supplies the material, and what supplies the energy? Sunlight is essential, but it is not a delivery truck carrying wood into the tree. Carbon dioxide and water supply atoms. Light supplies energy that the plant can use to assemble organic molecules. Keep those roles separate on screen: solid dots for matter, a different arrow for energy. That distinction prevents the explanation from turning sunlight into an imaginary substance.
+
+[VISUAL: Use persistent solid carbon/oxygen/hydrogen symbols and a separate dashed light-energy arrow; do not merge the arrow into a mass counter.]
+
+Source: https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis
+
+## scene-3: Get through the leaf. (61.7–92.3s, estimate)
+
+Our carbon atom begins in carbon dioxide outside the plant. Small openings called stomata allow gas exchange between a leaf and its surroundings. Carbon dioxide moves into spaces inside the leaf and can reach photosynthetic cells. Zoom from the whole leaf to one opening, then to a cell and a chloroplast. The camera is following a physical route, not merely making the picture busier. Keep the carbon atom recognizable through every change of scale.
+
+[VISUAL: Track a labelled CO₂ molecule through a stoma into a mesophyll cell; maintain a stable atom marker through the camera move.]
+
+Source: https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+
+## scene-4: Pay the energy cost. (92.3–125.0s, estimate)
+
+Inside a chloroplast, pigments absorb light. The light-dependent reactions transform that captured energy into chemical forms used by the next part of the process. Water participates, and oxygen is released. This is a good moment to slow down: water is not just a hose feeding a wooden structure, and sunlight is not a pile of extra atoms. The leaf is managing a chain of reactions. Our animation compresses that chain, while preserving the difference between its inputs and products.
+
+[VISUAL: Construct a schematic thylakoid membrane in layers. Mark energy transfer distinctly from movement of matter. Label the oxygen output without drawing a quantitatively balanced reaction model.]
+
+Source: https://openstax.org/books/biology-2e/pages/8-2-the-light-dependent-reactions-of-photosynthesis
+
+## scene-5: Fix the carbon. (125.0–157.2s, estimate)
+
+Now return to the carbon atom. The Calvin cycle incorporates carbon from carbon dioxide into organic molecules using energy supplied by the light reactions. Carbon fixation is the key change: carbon that arrived as part of a gas becomes part of the plant’s organic chemistry. Do not animate an entire glucose molecule appearing from a single carbon dioxide molecule. Instead, show a marked carbon joining a larger reaction network, with the diagram clearly identified as a simplified model.
+
+[VISUAL: Progressively construct a labelled carbon-fixation pathway. Reveal one marked atom entering an organic intermediate; keep unshown reaction steps visibly compressed.]
+
+Source: https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+
+## scene-6: Move the products. (157.2–192.4s, estimate)
+
+A leaf is not the only part of a tree that needs resources. Water and dissolved substances move through specialized tissues, and photosynthetic products can travel from producing regions toward places that use or store them. Follow the products from the leaf toward growing tissue. The route gives us a useful narrative turn: the chemistry began in one place, but its consequences are distributed through a whole organism. Keep the transport pathways distinct so a viewer does not mistake every arrow for the same process.
+
+[VISUAL: Transition from leaf to a whole-plant section. Identify xylem and phloem with separate labels and restrained directional cues, then isolate the route relevant to photosynthetic products.]
+
+Source: https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants
+
+## scene-7: Build structure, not just fuel. (192.4–224.7s, estimate)
+
+Sugars are more than a short-lived fuel supply. Plants can also use carbohydrate building blocks to form structural materials. Cellulose consists of linked glucose units and contributes to plant cell walls. Build a short chain on screen, then gather several chains into a schematic wall. We are changing scale again: from molecules to a material. The repeated unit should remain identifiable, so the viewer can see why a chemical explanation belongs in a story about a solid trunk.
+
+[VISUAL: Link glucose units into a labelled cellulose chain and then a wall schematic. Hold one highlighted unit as scale changes; avoid implying the diagram shows all components of wood.]
+
+Source: https://openstax.org/books/biology-2e/pages/3-2-carbohydrates
+
+## scene-8: Repay the opening question. (224.7–263.2s, estimate)
+
+Return to the tree we started with. Carbon incorporated from carbon dioxide helps form the organic materials of its growing body. That is the surprising answer to the question of where much of its dry mass begins. It is not the claim that soil is useless, that every atom comes from the air, or that a living tree contains no water. Roots, water, minerals, light, and gas exchange all matter. The payoff is a more precise picture: a tree links the atmosphere to a living structure through a coordinated chemical and transport system.
+
+[VISUAL: Reassemble the original silhouette with carbon pathway, water contribution and a small mineral-input label. Reuse the opening atom marker so the visual ending answers the initial question.]
+
+Source: https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis
+
+## Performance / factual QA
+
+Hook is a question that the final beat answers. Every scene has an exact visible mechanism and a source. No invented statistics, quotes, historical experiments or precise biological reaction times. Simplified molecule diagrams require labels. Pronounce CO₂ as carbon dioxide; introduce Calvin cycle, stomata, xylem and phloem before using them as shorthand. Word-based runtime is an estimate; record and align before animation.
+
+Read-aloud pass: short explanatory sentences alternate with questions and visual holds. The animation preserves one carbon marker through scale changes. The final caveat distinguishes dry mass from water-rich fresh mass. Scientific approval remains human review, separate from structural script checks.

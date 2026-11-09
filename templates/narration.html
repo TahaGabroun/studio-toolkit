@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Studio timing calibration</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f0e7;color:#172b31;font-family:Arial,sans-serif}
+main{position:relative;width:1920px;height:1080px;padding:90px 120px}h1{font-size:78px;margin:30px 0}p{font-size:40px;line-height:1.4;max-width:1400px}.note{font-size:28px;color:#516267}svg{width:1600px;height:490px}.caption{position:absolute;left:120px;right:120px;bottom:100px;font-size:42px}
+</style></head><body><main>
+<div class="note">STUDIO TOOLKIT / DETERMINISTIC CALIBRATION</div><h1>Let the cue direct the eye.</h1>
+<p>One timeline controls the visible focus and the sound event.</p>
+<svg viewBox="0 0 1600 490" aria-label="Two precisely identified focus targets">
+<path d="M460 230 H1120" stroke="#9fa99e" stroke-width="7"/><g id="first"><circle cx="350" cy="230" r="110" fill="#a8442d"/><text x="350" y="245" text-anchor="middle" font-size="49" fill="#fff8e9">01</text><text x="350" y="410" text-anchor="middle" font-size="45" fill="#172b31">CONCEPT</text></g>
+<g id="second"><circle cx="1230" cy="230" r="110" fill="#a8442d"/><text x="1230" y="245" text-anchor="middle" font-size="49" fill="#fff8e9">02</text><text x="1230" y="410" text-anchor="middle" font-size="45" fill="#172b31">RELATIONSHIP</text></g>
+</svg><div class="caption" id="caption"></div><p class="note">TEST SIGNALS, NOT SPOKEN NARRATION</p>
+</main><script>
+const timeline=__TIMELINE_JSON__;
+window.seek=(seconds)=>{
+ const frame=Math.floor(seconds*timeline.fps+1e-6);
+ const index=frame>=timeline.events[1].start_frame?1:0;
+ const e=timeline.events[index];const u=Math.max(0,Math.min(1,(frame-e.start_frame)/12));const ease=1-Math.pow(1-u,3);
+ document.getElementById('first').style.opacity=String(index===0?1:.25+.75*(1-ease));
+ document.getElementById('second').style.opacity=String(index===1?.25+.75*ease:.25);
+ document.getElementById('caption').textContent=index===0?'Identify one concept.':'Then reveal its relationship.';
+};window.seek(0);window.ready=true;
+</script></body></html>

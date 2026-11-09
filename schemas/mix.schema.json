@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "mix",
+  "type": "object",
+  "properties": {
+    "target_lufs": {
+      "type": "number",
+      "minimum": -30,
+      "maximum": -10
+    },
+    "true_peak_db": {
+      "type": "number",
+      "maximum": -1
+    },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "narration",
+              "music",
+              "sfx"
+            ]
+          },
+          "start_frame": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "gain_db": {
+            "type": "number",
+            "minimum": -80,
+            "maximum": 12
+          }
+        },
+        "required": [
+          "path",
+          "role",
+          "start_frame",
+          "gain_db"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "target_lufs",
+    "true_peak_db",
+    "tracks"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Remotion Motion Graphics"
+  short_description: "Create reusable Remotion typography, diagrams, infographics,"
+  default_prompt: "Use $remotion-motion-graphics to complete the relevant Studio Toolkit production task."

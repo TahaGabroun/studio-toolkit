@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "project",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "direction": {
+      "enum": [
+        "ltr",
+        "rtl"
+      ]
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 2,
+      "multipleOf": 2
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 2,
+      "multipleOf": 2
+    },
+    "fps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120
+    },
+    "duration_frames": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "engine": {
+      "enum": [
+        "unselected",
+        "html",
+        "remotion"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "title",
+    "language",
+    "direction",
+    "width",
+    "height",
+    "fps",
+    "duration_frames",
+    "engine"
+  ],
+  "additionalProperties": false
+}

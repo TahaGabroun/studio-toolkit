@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "script",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "promise": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "hook",
+              "context",
+              "development",
+              "payoff"
+            ]
+          },
+          "narration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "visual": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "narration",
+          "visual",
+          "source_ids"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2
+    }
+  },
+  "required": [
+    "title",
+    "promise",
+    "language",
+    "scenes"
+  ],
+  "additionalProperties": false
+}

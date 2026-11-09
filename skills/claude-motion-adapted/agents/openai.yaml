@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Motion Adapted"
+  short_description: "Direct advanced motion design with purposeful timing, compos"
+  default_prompt: "Use $claude-motion-adapted to complete the relevant Studio Toolkit production task."

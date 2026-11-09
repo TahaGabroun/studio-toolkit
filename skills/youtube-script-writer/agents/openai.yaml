@@ -1,0 +1,4 @@
+interface:
+  display_name: "Youtube Script Writer"
+  short_description: "Write or revise long-form YouTube narration with truthful ho"
+  default_prompt: "Use $youtube-script-writer to complete the relevant Studio Toolkit production task."

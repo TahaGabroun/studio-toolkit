@@ -1,0 +1,58 @@
+{
+  "name": "Studio Toolkit",
+  "version": "0.2.0",
+  "skills": [
+    {
+      "id": "claude-motion-adapted",
+      "aliases": [
+        "studio-motion-director"
+      ]
+    },
+    {
+      "id": "content-os",
+      "aliases": [
+        "studio-content-os"
+      ]
+    },
+    {
+      "id": "motion-design",
+      "aliases": [
+        "studio-motion-html"
+      ]
+    },
+    {
+      "id": "remotion-motion-graphics",
+      "aliases": [
+        "studio-remotion-graphics"
+      ]
+    },
+    {
+      "id": "remotion-video",
+      "aliases": [
+        "studio-remotion-editor"
+      ]
+    },
+    {
+      "id": "studio-toolkit",
+      "aliases": []
+    },
+    {
+      "id": "youtube-agent",
+      "aliases": [
+        "studio-youtube-agent"
+      ]
+    },
+    {
+      "id": "youtube-script-writer",
+      "aliases": [
+        "studio-youtube-script"
+      ]
+    },
+    {
+      "id": "youtube-strategy",
+      "aliases": [
+        "studio-youtube-channel"
+      ]
+    }
+  ]
+}

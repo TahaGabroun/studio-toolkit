@@ -1,0 +1,4 @@
+interface:
+  display_name: "Remotion Video"
+  short_description: "Build and edit full React/Remotion videos with compositing, "
+  default_prompt: "Use $remotion-video to complete the relevant Studio Toolkit production task."

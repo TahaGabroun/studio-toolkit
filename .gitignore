@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.agents/
+.codex/
+work/
+.env
+.env.*
+*token*.json
+*credentials*.json
+*client_secrets*.json
+.DS_Store

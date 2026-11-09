@@ -1,0 +1,4 @@
+interface:
+  display_name: "Content Os"
+  short_description: "Manage source-first editorial planning, creator voice, corpu"
+  default_prompt: "Use $content-os to complete the relevant Studio Toolkit production task."

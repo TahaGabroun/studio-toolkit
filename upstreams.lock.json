@@ -1,0 +1,50 @@
+[
+  {
+    "repository": "https://github.com/whaleyxbt/claude-motion",
+    "commit": "6f80380b91858dad66524a5b34e027dad656d538",
+    "license": "MIT",
+    "license_file": "third_party/licenses/claude-motion.txt"
+  },
+  {
+    "repository": "https://github.com/howseen-ai/claude-motion-design",
+    "commit": "3d90d349ef3fdde9b7e89de4df4a2159c9e8697f",
+    "license": "MIT",
+    "license_file": "third_party/licenses/claude-motion-design.txt"
+  },
+  {
+    "repository": "https://github.com/haidrrrry/claude-remotion-skill",
+    "commit": "1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383",
+    "license": "MIT",
+    "license_file": "third_party/licenses/claude-remotion-skill.txt"
+  },
+  {
+    "repository": "https://github.com/AgriciDaniel/claude-youtube",
+    "commit": "84c3fa6805200632fadb4fe2795ef265511271c7",
+    "license": "MIT",
+    "license_file": "third_party/licenses/claude-youtube.txt"
+  },
+  {
+    "repository": "https://github.com/cdeistopened/content-os",
+    "commit": "16e080f04186d892dcaa55672bea63096b0912ad",
+    "license": "MIT",
+    "license_file": "third_party/licenses/content-os.txt"
+  },
+  {
+    "repository": "https://github.com/SkillMedev/creator-studio",
+    "commit": "21980fd85666053f4385fbf254bf960f03d34279",
+    "license": "MIT",
+    "license_file": "third_party/licenses/creator-studio.txt"
+  },
+  {
+    "repository": "https://github.com/Liamrjohnston/remotion-motion-graphics-skill",
+    "commit": "b860c7921f2220b9e2a84e815ba0ae7b10858f08",
+    "license": "MIT",
+    "license_file": "third_party/licenses/remotion-motion-graphics-skill.txt"
+  },
+  {
+    "repository": "https://github.com/Jakeschincariol/youtube-agent-skill",
+    "commit": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6",
+    "license": "MIT",
+    "license_file": "third_party/licenses/youtube-agent-skill.txt"
+  }
+]

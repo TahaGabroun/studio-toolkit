@@ -1,0 +1,4 @@
+interface:
+  display_name: "Youtube Strategy"
+  short_description: "Audit YouTube channels, position a series, research competit"
+  default_prompt: "Use $youtube-strategy to complete the relevant Studio Toolkit production task."

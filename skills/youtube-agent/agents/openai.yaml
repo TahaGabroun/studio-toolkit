@@ -1,0 +1,4 @@
+interface:
+  display_name: "Youtube Agent"
+  short_description: "YouTube production planning, research, hook and title packag"
+  default_prompt: "Use $youtube-agent to complete the relevant Studio Toolkit production task."

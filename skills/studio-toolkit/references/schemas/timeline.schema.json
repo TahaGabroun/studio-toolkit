@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "timeline",
+  "type": "object",
+  "properties": {
+    "fps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120
+    },
+    "duration_frames": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_frame": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end_frame": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "id",
+          "start_frame",
+          "end_frame"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_frame": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end_frame": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cue_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect": {
+            "enum": [
+              "focus",
+              "build",
+              "track",
+              "annotate",
+              "reveal"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "start_frame",
+          "end_frame",
+          "target",
+          "cue_id",
+          "effect"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "fps",
+    "duration_frames",
+    "scenes",
+    "events"
+  ],
+  "additionalProperties": false
+}

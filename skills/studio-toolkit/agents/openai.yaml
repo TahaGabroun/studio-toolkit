@@ -1,0 +1,4 @@
+interface:
+  display_name: "Studio Toolkit"
+  short_description: "Coordinate scripts, narration, video production and QA"
+  default_prompt: "Use $studio-toolkit to produce a research-backed narrated explainer with validated timing."

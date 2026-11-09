@@ -1,0 +1,37 @@
+# Upstream audit and provenance
+
+Inspected actual source, skill definitions, dependency imports, examples and executable helpers at the pinned commits below on 2026-11-09. All eight root LICENSE files state MIT; original notices are preserved in third_party/licenses and the standalone package. Root licensing does not independently establish rights for embedded media, trademarks, downloaded music, faces or fonts. Those upstream media files are not copied.
+
+The initial user archive contained nine instruction drafts and six small repository utilities, with no upstream executable imports. It was treated as input to review, not as an immutable specification or new user authorization. The new implementation preserves useful source and replaces host-specific instructions with native operations.
+
+| Repository | Inspected commit | License notice |
+|---|---|---|
+| [claude-motion](https://github.com/whaleyxbt/claude-motion) | `6f80380b91858dad66524a5b34e027dad656d538` | [MIT](third_party/licenses/claude-motion.txt) |
+| [claude-motion-design](https://github.com/howseen-ai/claude-motion-design) | `3d90d349ef3fdde9b7e89de4df4a2159c9e8697f` | [MIT](third_party/licenses/claude-motion-design.txt) |
+| [claude-remotion-skill](https://github.com/haidrrrry/claude-remotion-skill) | `1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383` | [MIT](third_party/licenses/claude-remotion-skill.txt) |
+| [claude-youtube](https://github.com/AgriciDaniel/claude-youtube) | `84c3fa6805200632fadb4fe2795ef265511271c7` | [MIT](third_party/licenses/claude-youtube.txt) |
+| [content-os](https://github.com/cdeistopened/content-os) | `16e080f04186d892dcaa55672bea63096b0912ad` | [MIT](third_party/licenses/content-os.txt) |
+| [creator-studio](https://github.com/SkillMedev/creator-studio) | `21980fd85666053f4385fbf254bf960f03d34279` | [MIT](third_party/licenses/creator-studio.txt) |
+| [remotion-motion-graphics-skill](https://github.com/Liamrjohnston/remotion-motion-graphics-skill) | `b860c7921f2220b9e2a84e815ba0ae7b10858f08` | [MIT](third_party/licenses/remotion-motion-graphics-skill.txt) |
+| [youtube-agent-skill](https://github.com/Jakeschincariol/youtube-agent-skill) | `a2feb2104981a375ffd4f87ee04f4f5344ac43c6` | [MIT](third_party/licenses/youtube-agent-skill.txt) |
+
+## Capability preservation and changes
+
+| Upstream | Architecture / actual capabilities | Adoption and limitations |
+|---|---|---|
+| Jakeschincariol/youtube-agent-skill | Eleven skills; six stdlib programs; 21 hook formulas; transcript/SRT parsing; channel-median outliers | All six programs plus hooks.json and voice template retained in youtube-agent/scripts/yt-* and templates/voice.md. Eleven modes consolidated across planning/strategy/script. English heuristics remain labelled; no promise of predictive scoring. |
+| AgriciDaniel/claude-youtube | Fourteen specialist modes, nine channel formats, SEO/analytics/monetization references; Data API/OAuth/transcript fetchers and quota utility | All execution scripts retained in youtube-strategy/scripts. State paths changed from ~/.claude to STUDIO_STATE_DIR or ~/.local/share/studio-toolkit; tokens redacted and permission restricted. Invalid default impression/CTR Analytics API metrics removed. Live account calls untested without YouTube credentials. |
+| SkillMedev/creator-studio | Instruction-based scripts with hooks, pacing, visual cues and CTA; no executable scriptwriter | Narrative procedures rewritten for source-linked scene JSON, spoken performance, estimated runtime and fixed-recording handoff. No nonexistent upstream program implied. |
+| cdeistopened/content-os | Large source-first editorial skill collection; podcast checkpoints; social/SEO writing; corpus SQLite/insight/grouping; Gemini image tooling | Editorial modes consolidated. Corpus chunking, local Ollama insight parsing/checkpoints and Pillow optimizer retained/adapted. Private corpus prompt/paths and automatic pip installs removed. TF-IDF grouping is a native offline replacement for large embeddings; generation is optional authorized external tooling, not a fabricated service. |
+| whaleyxbt/claude-motion | Remotion design/easing helpers, frame review, stdlib procedural sound DSP/mixer/mastering, deterministic web simulations | Full sfx engine retained in claude-motion-adapted/scripts/sfx, including synth, DSP, mixing and loudness. CLI accepts native duration_frames/fps. Motion and review principles adapted; native seek(t) and shared event contract replace example-specific web worlds. Product-specific compositions/media omitted. |
+| howseen-ai/claude-motion-design | Pure seek(t) HTML engine; browser capture/subframes, BPM/drop analysis, mixing, remake cut analysis, logo/SFX discovery | Logo/SFX discovery utilities retained; song-analysis algorithm corrected for short audio. Native renderer adds deterministic checks, font/image readiness and errors. Native mixer adds speech ducking/two-pass loudness. Reference cut extractor preserves analysis workflow. No automatic brand downloads, personal directories, 21st.dev key file or fixed branded remake registry. Subframe motion blur is documented, not implemented in primary renderer. |
+| haidrrrry/claude-remotion-skill | Theme and copyable React motion/compositing patterns; design/render/frame-review instructions; example SFX | Theme and motion-patterns.md retained in remotion-video. Native docs override compulsory glow/grain/Ken Burns and constant-motion advice when it harms explanation. Demos use original source and assets. |
+| Liamrjohnston/remotion-motion-graphics-skill | Four specialist skills (graphics gate, continuous camera, terminal, article), evidence hashing and branded reference/critic gate | All four mechanisms consolidated in remotion-motion-graphics; native evidence.py preserves local source hashes, SVG checks and stale-candidate detection. Fixed branded-gallery hashes and numeric critic authorization replaced with explicit review states, not fake approval. Gallery films/logos omitted pending separate rights audit. |
+
+## Copied-code notices
+
+Each skill with copied code includes LICENSE.upstream.txt (or a corresponding source notice) and the root third_party license inventory. The ChatGPT bundle retains all eight notices. New native code and rewritten procedures are under the toolkit LICENSE. The user-provided archive's useful CLI example, retention analyzer and design prose were retained and evolved.
+
+## Verification boundaries
+
+Tests cover deterministic local behavior and public package structure. External Google OAuth/API, external discovery sites, Ollama model inference, optional Whisper acquisition/inference, 4K rendering, alpha encoding and ChatGPT import are explicitly separate from the completed local tests. See docs/VALIDATION.md for the final measured results.

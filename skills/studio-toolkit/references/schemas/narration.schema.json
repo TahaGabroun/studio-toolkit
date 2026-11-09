@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "narration",
+  "type": "object",
+  "properties": {
+    "audio": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audio_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "method": {
+      "enum": [
+        "manual-reviewed",
+        "asr-unreviewed",
+        "synthetic-test"
+      ]
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "start_s",
+          "end_s",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "audio",
+    "audio_sha256",
+    "method",
+    "segments"
+  ],
+  "additionalProperties": false
+}
