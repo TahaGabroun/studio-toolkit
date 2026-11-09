@@ -32,3 +32,7 @@ Read [Remotion production](references/remotion-production.md), then consult [com
 Use the installed `studio-toolkit` sibling for the shared CLI and schemas. In a repository checkout its entry is `skills/studio-toolkit/scripts/studio.py`; resolve paths from the actual skill directory, not the current working directory. In a single-skill ChatGPT package use the bundled `scripts/studio.py`.
 
 Default settings, error handling and QA: follow [shared pipeline](../studio-toolkit/references/pipeline.md) and [production standard](../studio-toolkit/references/quality.md). Read only the specialist references needed for the requested task. Do not fabricate unavailable service results; preserve completed artifacts and report actionable failures.
+
+## Production providers
+
+For anatomical, biological or physical mechanism diagrams, use the actual anatomy skill before implementing the animation; preserve its recognizable structures and semantic layers. Newly generated production narration uses ElevenLabs with a selected voice and measured provider cues. Read [production preferences](../studio-toolkit/references/production-preferences.md). Report missing anatomy/voice access instead of substituting generic diagrams or a local test voice. Preserve supplied approved recordings and explicit user overrides.

@@ -1,6 +1,6 @@
 {
   "name": "Studio Toolkit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "skills": [
     {
       "id": "claude-motion-adapted",
@@ -53,6 +53,17 @@
       "aliases": [
         "studio-youtube-channel"
       ]
+    }
+  ],
+  "integrations": [
+    {
+      "id": "anatomy",
+      "path": "integrations/anatomy",
+      "source_archive": "anatomy-gallery-improved.zip",
+      "archive_sha256": "43721673f9d9472c1a42a0f0ba942730c3d4abe8545c56191ba79349acac25db",
+      "upstream": "https://github.com/wheresryan22/anatomy",
+      "upstream_revision": "240a9bf7c50cc6226148762a1017466fcbc08523",
+      "license": "MIT"
     }
   ]
 }

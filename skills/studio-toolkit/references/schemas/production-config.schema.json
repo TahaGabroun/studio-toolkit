@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "production-config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "diagrams",
+    "narration"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "diagrams": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preferred_skill",
+        "skill_path",
+        "required_for_diagram_scenes"
+      ],
+      "properties": {
+        "preferred_skill": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]{1,64}$"
+        },
+        "skill_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "required_for_diagram_scenes": {
+          "type": "boolean"
+        }
+      }
+    },
+    "narration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "voice_id",
+        "model_id",
+        "output_format"
+      ],
+      "properties": {
+        "provider": {
+          "const": "elevenlabs"
+        },
+        "voice_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output_format": {
+          "const": "mp3_44100_128"
+        }
+      }
+    }
+  }
+}

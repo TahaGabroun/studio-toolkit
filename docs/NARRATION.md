@@ -1,5 +1,9 @@
 # Narration, timing and Arabic
 
+New production narration uses ElevenLabs with an explicitly selected voice. Read the [production workflow](../skills/studio-toolkit/references/production-preferences.md) for setup and the timestamp-aware generation helper. A confirmed connected ElevenLabs tool is preferred when available; the REST helper uses ELEVENLABS_API_KEY from the environment. Missing access is a setup requirement, not a reason to substitute a local test voice.
+
+Generate candidates with `python skills/studio-toolkit/scripts/elevenlabs_narration.py PROJECT --voice-id VOICE_ID`. It requests continuous speech with character timings, caches completed responses, and derives scene/word cues from measured provider timestamps. Candidate cue IDs are the script scene IDs. Review pronunciation and retime scene partitions to the real audio before importing with `studio.py align ... --method provider-unreviewed`. No existing approved narration, captions or timeline is overwritten by generation.
+
 Accept existing WAV, MP3 or M4A. Probe actual duration and retain the original bytes. Transcription and forced alignment are different: local faster-whisper produces ASR with estimated word timestamps, not a guaranteed forced alignment of an exact user transcript. This toolkit imports reviewed timestamps and labels ASR drafts honestly.
 
 ```json
@@ -12,4 +16,4 @@ Optional ASR: install requirements-transcription.txt in a venv and run scripts/t
 
 Arabic projects set direction rtl and load a local Arabic font. Preserve connected glyphs, avoid tracking Arabic letters, use generous line height and test punctuation/numbers. In DOM text use bdi or an LTR span for CO₂, DNA and English terms; never reverse strings manually. SRT text remains logical Unicode order. The vertical demo tests Arabic text mixed with CO2 and source narration generated locally. Generated speech and its pronunciation still need human listening approval.
 
-The educational demo measures each generated speech phrase separately, adds known silent gaps, and schedules semantic focus to phrase onset. This is phrase-level generated-audio synchronization, not word-level forced alignment of spontaneous speech. Calibration pulses additionally test encoded audio/event alignment within one frame. Biological events overlap and unfold over longer times than the film's compressed teaching sequence.
+The existing educational calibration demo measures each locally generated test-speech phrase separately, adds known silent gaps, and schedules semantic focus to phrase onset. It is retained as reproducibility evidence; it is not the voice choice for future productions. This is phrase-level generated-audio synchronization, not word-level forced alignment of spontaneous speech. Calibration pulses additionally test encoded audio/event alignment within one frame. Biological events overlap and unfold over longer times than the film's compressed teaching sequence.

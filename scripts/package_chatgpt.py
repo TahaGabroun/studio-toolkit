@@ -27,6 +27,12 @@ def package(destination):
             if f.is_file() and f.name!='SKILL.md' and '__pycache__' not in f.parts:
                 items[f'references/specialists/{name}/{f.relative_to(source)}']=f.read_bytes()
     for f in (ROOT/'third_party/licenses').iterdir():items[f'references/licenses/{f.name}']=f.read_bytes()
+    # Keep the supplied Anatomy engine/examples intact, with its manifest exposed as a reference.
+    for f in (ROOT/'integrations/anatomy').rglob('*'):
+        if f.is_file() and '__pycache__' not in f.parts:
+            relative=f.relative_to(ROOT/'integrations/anatomy').as_posix()
+            if relative=='SKILL.md':relative='guide.md'
+            items[f'references/integrations/anatomy/{relative}']=f.read_bytes()
     items['LICENSE']=(ROOT/'LICENSE').read_bytes()
     for name in ['requirements.txt','requirements-youtube.txt','requirements-transcription.txt']:
         items[name]=(ROOT/name).read_bytes()

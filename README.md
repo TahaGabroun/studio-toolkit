@@ -8,6 +8,7 @@ Nine native Codex skills and executable utilities for research-backed, narration
 - Source-first long-form scripts, creator voice, editorial calendars, asset ledgers and cross-platform repurposing.
 - Deterministic HTML/SVG/JavaScript and React/Remotion production with local assets, procedural sound and frame-based narration cues.
 - Structured artifact schemas, resumable hash checkpoints, caption consistency, media decoding, loudness measurement and contact sheets.
+- Anatomy-skill routing for anatomical scenes, plus cached ElevenLabs production narration with provider-measured scene/word cues.
 - English and Arabic/RTL workflows; WAV, MP3 and M4A narration; landscape, vertical, square and optional 4K dimensions.
 
 ## Architecture
@@ -20,7 +21,9 @@ flowchart LR
   C --> M[claude-motion-adapted: motion and sound]
   M --> H[motion-design: HTML/SVG]
   M --> R[remotion-video + remotion-motion-graphics]
-  N[Measured narration cues] --> T[timeline.json: one frame clock]
+  AN[anatomy skill: biological design] --> M
+  EL[ElevenLabs: new narration] --> N[Measured narration cues]
+  N --> T[timeline.json: one frame clock]
   T --> H
   T --> R
   T --> A[Captions + audio mix]
@@ -30,7 +33,7 @@ flowchart LR
   Q --> P[Publication package]
 ```
 
-[Pipeline and schemas](docs/ARCHITECTURE.md) · [upstream audit](SOURCES.md) · [validation](docs/VALIDATION.md) · [demos](https://github.com/TahaGabroun/studio-toolkit-demos)
+[Pipeline and schemas](docs/ARCHITECTURE.md) · [upstream audit](SOURCES.md) · [validation](docs/VALIDATION.md) · [Anatomy/ElevenLabs update](docs/WORKFLOW-UPDATE.md) · [demos](https://github.com/TahaGabroun/studio-toolkit-demos)
 
 ## Install
 
@@ -44,6 +47,8 @@ python3 -m venv .venv
 .venv/bin/python skills/studio-toolkit/scripts/studio.py doctor
 bash install.sh install --global
 bash install.sh validate --global
+# Include the supplied Anatomy skill (nine canonical skills + Anatomy):
+bash install.sh install --global --with-anatomy
 ```
 
 The installer respects `CODEX_HOME/skills`, otherwise prefers an existing `~/.agents/skills`, then an existing `~/.codex/skills`, and uses `~/.agents/skills` for a new installation. This machine uses the existing `~/.codex/skills` convention:
@@ -55,7 +60,7 @@ bash install.sh validate --dest "${CODEX_HOME:-$HOME/.codex}/skills"
 
 Use one global target for your host to avoid duplicate discovery. A project-specific install uses `bash install.sh install --project /path/to/project`, creating its `.agents/skills`. The installer preflights every name, creates maintainable symlinks and refuses unrelated files. Skills become available on the next Codex turn; reload the app if its catalog has not refreshed. It does not grant shell/network/account access.
 
-Commands: `install`, `validate`, `list`, `update`, `uninstall` all accept `--global`, `--project DIR` or `--dest DIR`. `bash uninstall.sh --global` is a convenience wrapper. Uninstall removes only matching Studio-owned links. Move the checkout by uninstalling the old links first, moving it, then reinstalling. Windows users need Python and symlink privileges (or use WSL); only Linux installation/rendering was tested.
+Commands: `install`, `validate`, `list`, `update`, `uninstall` all accept `--global`, `--project DIR` or `--dest DIR`. Add `--with-anatomy` to manage the supplied Anatomy integration as well, including on uninstall/update. `bash uninstall.sh --global` is a convenience wrapper. Uninstall removes only matching Studio-owned links. Move the checkout by uninstalling the old links first, moving it, then reinstalling. Windows users need Python and symlink privileges (or use WSL); only Linux installation/rendering was tested.
 
 ## Skills
 
@@ -95,11 +100,23 @@ A runnable no-API HTML example is provided:
 
 For four complete reproducible Remotion projects and real rendered examples, clone [Studio Toolkit Demos](https://github.com/TahaGabroun/studio-toolkit-demos) beside this checkout.
 
+## Production preferences
+
+New projects receive production-config.json. Structured explanatory diagrams use the supplied Anatomy skill for visual design before HTML/Remotion implementation; newly generated production narration uses ElevenLabs. Read the [production workflow](skills/studio-toolkit/references/production-preferences.md) for skill discovery, voice setup, provider timings and reuse of cached responses. A missing skill/connection is reported explicitly. Existing supplied recordings and user overrides are preserved; the existing eSpeak/pulse examples remain calibration-only.
+
+```bash
+.venv/bin/python scripts/studio.py workflow-check my-film --anatomical --generate-narration
+.venv/bin/python skills/studio-toolkit/scripts/elevenlabs_narration.py my-film --voice-id VOICE_ID --dry-run
+.venv/bin/python skills/studio-toolkit/scripts/elevenlabs_narration.py my-film --voice-id VOICE_ID
+```
+
+Configure ELEVENLABS_API_KEY in the environment, never in the project. The voice ID is explicit; no cloned voice is created. Actual provider speech requires working account access and may use credits. The helper preserves approved project artifacts and requires review before generated candidates enter the shared timeline. The nine canonical skills are retained; the supplied Anatomy skill is bundled separately under integrations/anatomy and can also be installed globally with --with-anatomy.
+
 ## Dependencies and optional services
 
 Core Python dependencies are pinned in requirements.txt; their resolved transitive versions are recorded in requirements-lock.txt. Use `pip install -r requirements-lock.txt` to reproduce the tested Python 3.10 Linux environment. Install the Playwright browser with `python -m playwright install chromium`, or supply `CHROMIUM=/path/to/compatible/chromium`. Ubuntu 26.04 was not recognized by pinned Playwright 1.56; the tested fallback download used `PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64` and was rendered successfully. A compatible system Chromium also works.
 
-YouTube read-only APIs, yt-dlp captions, local Ollama insights and faster-whisper ASR are optional. [Optional integrations](docs/INTEGRATIONS.md) explains credentials, model downloads and unverified live services. No paid API is required for basic operation. We do not include an image-generation, premium TTS, YouTube upload or private analytics service. Remotion has its own [license terms](https://www.remotion.dev/docs/license), which are separate from the MIT toolkit.
+YouTube read-only APIs, yt-dlp captions, local Ollama insights and faster-whisper ASR are optional. [Optional integrations](docs/INTEGRATIONS.md) explains credentials, model downloads and unverified live services. No paid API is required for basic operation. ElevenLabs production narration has a real credential-gated helper; live generation requires your account. Image generation and YouTube upload are not bundled services; private analytics requires authorized account access. Remotion has its own [license terms](https://www.remotion.dev/docs/license), which are separate from the MIT toolkit.
 
 ## Test and distribute
 

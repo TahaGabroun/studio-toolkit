@@ -3,6 +3,23 @@ on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
+  anatomy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify supplied Anatomy model and geometry
+        run: >-
+          node --test --test-isolation=none
+          integrations/anatomy/examples/animal-cell/model.test.mjs
+          integrations/anatomy/scripts/audit-cache.test.mjs
+          integrations/anatomy/scripts/audit-order-convergence.test.mjs
+          integrations/anatomy/scripts/audit-profile.test.mjs
+          integrations/anatomy/scripts/audit-projection.test.mjs
+          integrations/anatomy/scripts/audit-slide-clearance.test.mjs
+          integrations/anatomy/scripts/audit-taper.test.mjs
   core:
     runs-on: ubuntu-24.04
     steps:

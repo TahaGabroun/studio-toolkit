@@ -22,6 +22,12 @@ def check(root=ROOT):
             if '$'+meta['name'] not in ui['interface']['default_prompt']:errors.append(f'Invocation mismatch: {f}')
         except (OSError,ValueError,KeyError,TypeError,yaml.YAMLError) as e:errors.append(f'{f}: {e}')
     if found!=expected:errors.append(f'Skill inventory mismatch {found ^ expected}')
+    for item in manifest.get('integrations',[]):
+        try:
+            directory=root/item['path'];meta=yaml.safe_load((directory/'SKILL.md').read_text().split('---',2)[1])
+            if meta['name']!=item['id'] or not meta['description']:errors.append(f'Invalid integration metadata: {item["id"]}')
+            if 'MIT License' not in (directory/'LICENSE').read_text():errors.append(f'Missing integration license: {item["id"]}')
+        except (OSError,ValueError,KeyError,TypeError,yaml.YAMLError) as e:errors.append(f'Integration {item["id"]}: {e}')
     for f in root.rglob('*.md'):
         if any(x in f.parts for x in ['.venv','.git','node_modules']):continue
         for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)',f.read_text()):

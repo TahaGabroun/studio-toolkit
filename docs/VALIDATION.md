@@ -1,5 +1,7 @@
 # Validation report — 2026-11-09
 
+This is the original 0.2 baseline. The [0.3 Anatomy/ElevenLabs workflow update](WORKFLOW-UPDATE.md) records its additional tests and limits.
+
 Baseline: Linux Ubuntu 26.04, Python 3.10.9, Node 24.22.2, FFmpeg 4.2.2, Codex 0.165.0-alpha.1.2, Remotion 4.0.542, local Chromium and pinned Python/Node dependency locks. No paid API was used.
 
 | Check | Result |

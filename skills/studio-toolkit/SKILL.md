@@ -7,6 +7,8 @@ description: Coordinate end-to-end video and editorial productions across resear
 
 Read [pipeline contracts](references/pipeline.md) before creating production artifacts and [quality standards](references/quality.md) before visual work. Use [scripts/studio.py](scripts/studio.py) for initialization, validation, stage records and measured narration import. [scripts/media.py](scripts/media.py) mixes audio, creates test pulses, muxes and validates media. Resolve paths from this skill's actual directory.
 
+For future animated anatomical, biological or technical mechanism diagrams, use the anatomy skill to design the biological structures, then animate its approved assets in the selected renderer. For new production narration, use ElevenLabs. Read [production preferences](references/production-preferences.md) for discovery, credentials/voice setup, measured timing and cache reuse. Missing anatomy skill or ElevenLabs access is a dependency to resolve, not permission to silently substitute generic diagrams or test voices. Existing approved recordings and explicit user overrides take precedence.
+
 ## Route the request
 
 | Intent | Specialist | Handoff |
@@ -19,6 +21,7 @@ Read [pipeline contracts](references/pipeline.md) before creating production art
 | Browser/SVG/simulation rendering | motion-design | deterministic seek(t) source + master |
 | Full React video and compositing | remotion-video | composition + rendered master |
 | Reusable diagrams, typography, camera, editorial/terminal inserts | remotion-motion-graphics | composition / insert + evidence |
+| Anatomical, biological and technical mechanism diagrams | anatomy (supplied integration) → selected motion specialist | approved anatomical layers, semantic target IDs and provenance |
 
 Read the selected sibling's SKILL.md before specialist work. In the standalone package the same content is under `references/specialists/<name>.md`. [aliases](references/aliases.md) maps the archive identifiers; aliases route here and do not install duplicate skills. Use only relevant specialists, in story order. Apply their procedures yourself; delegation is optional and depends on the host and user's scope.
 
@@ -27,8 +30,8 @@ Read the selected sibling's SKILL.md before specialist work. In the standalone p
 Infer brief, audience, locale, deliverable, aspect ratio, target duration, existing narration and asset rights from the request. Ask only for essential missing inputs. Default to landscape, 30 fps, English; prerecorded narration fixes the spoken content unless changes are authorized.
 
 1. Run `python3 <this-skill>/scripts/studio.py init PROJECT --title "Title" --format landscape --duration 60` for a new project. Existing projects: validate and inspect `status` first.
-2. Develop idea → research → strategy → script → storyboard → design → assets → animation. Each output follows [schemas](references/schemas/project.schema.json); load the relevant schema rather than every file. Mark a stage complete only when its files are real and inspected.
-3. Import timestamps from actual narration using `align PROJECT --audio assets/narration.wav --segments segments.json --method manual-reviewed`. MP3/M4A also work through FFmpeg. Preserve raw ASR output; mark it `asr-unreviewed` until checked. Reuse approved script and asset hashes.
+2. Develop idea → research → strategy → script → storyboard → design → assets → animation. For structured explanatory diagrams, read the anatomy skill before visual planning and preserve its diagram quality in the animated implementation. Each output follows [schemas](references/schemas/project.schema.json); load the relevant schema rather than every file. Mark a stage complete only when its files are real and inspected.
+3. Generate new narration through ElevenLabs with provider timings, preserving completed responses instead of paying for unchanged speech again. Import its cues with `--method provider-unreviewed` until checked. For supplied recordings use `align PROJECT --audio assets/narration.wav --segments segments.json --method manual-reviewed`. MP3/M4A also work through FFmpeg. Preserve raw ASR output as `asr-unreviewed`; reuse approved script and asset hashes.
 4. Connect cue IDs to exact visible target IDs. Use progressive construction, focus, annotations or tracking. Build captions and audio placement from the same timeline. Do not invent equally spaced word timings.
 5. Run audio mixing, rendering, full-media decode and QA. Inspect representative frames and listen to the final audio. Automated pass, agent inspection and human approval are separate states.
 6. Prepare titles, description, thumbnail brief, captions, sources and licensing notes in publication.md. Account publication requires user authorization; prior explicit authorization remains valid. Preparing a publication package never implies that an upload occurred.

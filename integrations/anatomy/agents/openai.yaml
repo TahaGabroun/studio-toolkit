@@ -1,0 +1,14 @@
+interface:
+  display_name: Anatomy
+  short_description: Craft interactive isometric technical illustrations
+  default_prompt: Use $anatomy to explain a technical concept with a detailed interactive
+    isometric illustration.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

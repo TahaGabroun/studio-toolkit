@@ -72,6 +72,7 @@ def init(directory, title, fmt="landscape", fps=30, duration=30, language="en"):
     write(root / "project.json", {"schema_version": 1, "title": title, "language": language, "direction": "rtl" if language.startswith("ar") else "ltr", "width": w, "height": h, "fps": fps, "duration_frames": max(1, frame(duration, fps)), "engine": "unselected"})
     write(root / "state.json", {"version": 1, "stages": {}})
     write(root / "assets.json", {"assets": []})
+    write(root / "production-config.json", read(SKILL / "references/production-defaults.json"))
     for name, text in {"brief.md": f"# {title}\n\nAudience, promise, deliverable, runtime, rights and success criterion.\n", "research.md": "# Claim ledger\n\nRecord claim, source URL, date checked, limitation, scene ID.\n", "strategy.md": "# Strategy\n\nAudience question, differentiated evidence, packaging and experiment.\n", "design.md": "# Visual treatment\n\nPalette, local fonts, hierarchy, safe area and exact focus targets.\n"}.items():
         (root / name).write_text(text, encoding="utf-8")
     return root
@@ -91,11 +92,11 @@ def validate(root):
     root = Path(root)
     errors, warnings = [], []
     objects = {}
-    for name in ["project", "script", "storyboard", "timeline", "assets", "narration", "render-config", "mix"]:
+    for name in ["project", "script", "storyboard", "timeline", "assets", "narration", "render-config", "mix", "production-config"]:
         p = root / f"{name}.json"
         if not p.exists():
             if name == "project": errors.append("Missing project.json")
-            else: warnings.append(f"Pending artifact: {p.name}")
+            elif name != "production-config": warnings.append(f"Pending artifact: {p.name}")
             continue
         try:
             objects[name] = read(p)
@@ -117,6 +118,7 @@ def validate(root):
         if not (root / "captions.srt").is_file(): errors.append("Missing captions.srt for narrated project")
         elif (root / "captions.srt").read_text(encoding="utf-8") != srt(cues): errors.append("Captions differ from narration timestamps/text; regenerate")
         if narration["method"] == "asr-unreviewed": warnings.append("ASR timestamps and transcript require review; not forced alignment")
+        if narration["method"] == "provider-unreviewed": warnings.append("Provider-generated speech timestamps require listening and semantic review")
         audio = local(root, narration["audio"])
         if not audio.is_file(): errors.append("Missing narration audio")
         elif digest(audio) != narration["audio_sha256"]: errors.append("Narration audio changed; realign timestamps")
@@ -212,6 +214,9 @@ def fingerprints(root, stage):
     for s, outputs in STAGES.items():
         names += outputs
         if s == stage: break
+    # Production preferences affect visual planning onward, not approved research/writing.
+    if (root / "production-config.json").is_file() and list(STAGES).index(stage) >= list(STAGES).index("storyboard"):
+        names.append("production-config.json")
     if list(STAGES).index(stage) >= list(STAGES).index("assets"):
         names += [str(f.relative_to(root)) for f in (root / "assets").rglob("*") if f.is_file()]
     # Renderer source can live outside project: declared files only, no hidden discovery.
@@ -250,18 +255,64 @@ def doctor():
     import importlib.util
     return {"python": sys.version.split()[0], "executables": {x: shutil.which(x) for x in ["ffmpeg", "ffprobe", "node", "npm", "gh"]}, "python_packages": {x: bool(importlib.util.find_spec(x)) for x in ["yaml", "jsonschema", "PIL", "numpy", "playwright", "faster_whisper"]}}
 
+def production_config(root):
+    path = Path(root) / "production-config.json"
+    config = read(path if path.exists() else SKILL / "references/production-defaults.json")
+    errors = schema_errors("production-config", config)
+    if errors: raise ValueError("; ".join(errors))
+    return config
+
+def workflow_check(root, anatomical=False, generate_narration=False):
+    """Check selected production dependencies without a model call or secret disclosure."""
+    import os
+    config = production_config(root); diagram = config["diagrams"]; voice = config["narration"]
+    candidates = []
+    if diagram["skill_path"]:
+        explicit = Path(diagram["skill_path"]).expanduser()
+        if not explicit.is_absolute(): explicit = Path(root) / explicit
+        candidates.append(explicit if explicit.name == "SKILL.md" else explicit / "SKILL.md")
+    else:
+        # Prefer the user's pinned, bundled Anatomy distribution over a different global revision.
+        candidates += [SKILL.parents[1] / "integrations" / diagram["preferred_skill"] / "SKILL.md", SKILL / "references/integrations" / diagram["preferred_skill"] / "guide.md"]
+        roots = [Path(root) / ".agents/skills", Path(root) / ".codex/skills"]
+        roots += [p / ".agents/skills" for p in Path(root).resolve().parents]
+        roots += [Path(os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))) / "skills", Path.home() / ".agents/skills"]
+        candidates += [p / diagram["preferred_skill"] / "SKILL.md" for p in roots]
+    import yaml
+    available = None; invalid = []
+    for candidate in candidates:
+        if not candidate.is_file(): continue
+        try:
+            text = candidate.read_text(encoding="utf-8")
+            if not text.startswith("---\n") or "\n---\n" not in text[4:]: raise ValueError("frontmatter missing")
+            meta = yaml.safe_load(text.split("---", 2)[1])
+            if not isinstance(meta, dict) or meta.get("name") != diagram["preferred_skill"] or not isinstance(meta.get("description"), str) or not meta["description"].strip():
+                raise ValueError("name/description metadata mismatch")
+            available = candidate.resolve(); break
+        except (OSError, ValueError, yaml.YAMLError): invalid.append(str(candidate))
+    errors = []
+    if anatomical and diagram["required_for_diagram_scenes"] and available is None:
+        errors.append(f"Anatomy skill '{diagram['preferred_skill']}' is missing or invalid; resolve its actual repository/path before generating structured diagrams")
+    rest_key = bool(os.environ.get("ELEVENLABS_API_KEY")); voice_set = bool(voice["voice_id"] or os.environ.get("ELEVENLABS_VOICE_ID"))
+    if generate_narration:
+        if not rest_key: errors.append("ElevenLabs REST key missing; use a confirmed connected ElevenLabs tool or configure ELEVENLABS_API_KEY")
+        if not voice_set: errors.append("Choose an ElevenLabs voice_id in production-config.json or ELEVENLABS_VOICE_ID")
+    return {"anatomy": {"preferred_skill": diagram["preferred_skill"], "available": available is not None, "path": str(available) if available else None, "invalid_candidates": invalid}, "narration": {"provider": voice["provider"], "rest_key_configured": rest_key, "voice_configured": voice_set}, "errors": errors}
+
 def main():
     p = argparse.ArgumentParser(description=__doc__); sub = p.add_subparsers(dest="command", required=True)
     a = sub.add_parser("init"); a.add_argument("directory"); a.add_argument("--title", required=True); a.add_argument("--format", choices=FORMATS, default="landscape"); a.add_argument("--fps", type=int, default=30); a.add_argument("--duration", type=float, default=30); a.add_argument("--language", default="en")
     for cmd in ["validate", "status"]: sub.add_parser(cmd).add_argument("directory")
     a = sub.add_parser("complete"); a.add_argument("directory"); a.add_argument("stage", choices=STAGES)
-    a = sub.add_parser("align"); a.add_argument("directory"); a.add_argument("--audio", required=True); a.add_argument("--segments", required=True); a.add_argument("--method", choices=["manual-reviewed", "asr-unreviewed", "synthetic-test"], required=True)
+    a = sub.add_parser("align"); a.add_argument("directory"); a.add_argument("--audio", required=True); a.add_argument("--segments", required=True); a.add_argument("--method", choices=["manual-reviewed", "asr-unreviewed", "synthetic-test", "provider-unreviewed"], required=True)
     a = sub.add_parser("script-check"); a.add_argument("script"); a.add_argument("--fps", type=int, default=30)
     sub.add_parser("doctor")
+    a = sub.add_parser("workflow-check"); a.add_argument("directory"); a.add_argument("--diagrams", "--anatomical", dest="anatomical", action="store_true"); a.add_argument("--generate-narration", action="store_true")
     a = p.parse_args()
     try:
         if a.command == "init": print(init(a.directory, a.title, a.format, a.fps, a.duration, a.language)); return 0
         if a.command == "doctor": result = doctor()
+        elif a.command == "workflow-check": result = workflow_check(a.directory, a.anatomical, a.generate_narration)
         elif a.command == "validate": result = validate(a.directory)
         elif a.command == "status": result = statuses(a.directory)
         elif a.command == "complete": complete(a.directory, a.stage); result = statuses(a.directory)

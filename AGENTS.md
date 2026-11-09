@@ -1,6 +1,8 @@
 # Working on Studio Toolkit
 
-Preserve the nine canonical IDs in manifest.json and route historical IDs through the documented aliases. Keep skills concise, with real supporting scripts and references. No Claude tools, hidden private paths or paid service assumptions.
+Preserve the nine canonical IDs in manifest.json and route historical IDs through the documented aliases. Keep skills concise, with real supporting scripts and references. No Claude tools, hidden private paths or undeclared service assumptions.
+
+Future anatomical diagrams use the actual anatomy skill before the selected animation renderer. New production narration uses ElevenLabs with an explicitly selected voice and real provider timing data. Discover dependencies and report missing access; do not silently substitute generic anatomy or local test voices. Supplied approved recordings and explicit user overrides remain valid. Offline test/calibration examples stay clearly labelled and make no live-provider claim.
 
 Production artifacts use the schemas shipped under skills/studio-toolkit/references/schemas; repository schemas/ mirrors them for external clients. Update both and run validation. Timing is integer frames, half-open intervals, nearest-frame half-up conversion at measured audio ingestion. Never present ASR estimates as forced alignment or structural QA as creative approval.
 

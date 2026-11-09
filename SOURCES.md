@@ -35,3 +35,11 @@ Each skill with copied code includes LICENSE.upstream.txt (or a corresponding so
 ## Verification boundaries
 
 Tests cover deterministic local behavior and public package structure. External Google OAuth/API, external discovery sites, Ollama model inference, optional Whisper acquisition/inference, 4K rendering, alpha encoding and ChatGPT import are explicitly separate from the completed local tests. See docs/VALIDATION.md for the final measured results.
+
+## Supplied Anatomy integration — 0.3.0
+
+The user supplied anatomy-gallery-improved.zip for this workflow. Its 127 files are retained unchanged under integrations/anatomy, including the MIT notice (Copyright 2026 Ryan), original drawing engine, examples and the supplied ChatGPT/Codex adaptation. Archive SHA-256: `43721673f9d9472c1a42a0f0ba942730c3d4abe8545c56191ba79349acac25db`. The supplied provenance pins [Ryan's Anatomy](https://github.com/wheresryan22/anatomy) at `240a9bf7c50cc6226148762a1017466fcbc08523`; no silent upstream upgrade was performed. The provided 0.4 adaptation warns that its animal-cell example is a legacy schematic, so new biological productions must follow its subject-specific geometry and gallery-quality guidance.
+
+This integration is separate from the nine canonical Studio skills. The installer can manage it with --with-anatomy; the single-skill package includes it as a reference with its entry file renamed guide.md so the package still contains one SKILL.md. The original kit, scripts and example assets are preserved. The archive was inspected for credentials/private paths and its MIT notice is also retained in third_party/licenses/anatomy.txt.
+
+ElevenLabs support is independently authored against the official [speech-with-timestamps API](https://elevenlabs.io/docs/api-reference/text-to-speech/convert-with-timestamps); it does not redistribute a provider SDK or claim a live account test.

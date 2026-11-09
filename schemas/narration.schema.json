@@ -15,7 +15,8 @@
       "enum": [
         "manual-reviewed",
         "asr-unreviewed",
-        "synthetic-test"
+        "synthetic-test",
+        "provider-unreviewed"
       ]
     },
     "segments": {

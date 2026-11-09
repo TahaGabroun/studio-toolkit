@@ -2,6 +2,8 @@
 
 The orchestrator selects only relevant specialists. Skills supply editorial and production judgment; deterministic Python utilities validate contracts and media. No daemon, model API, scheduler or hidden agent runtime is needed.
 
+New projects persist production-config.json with anatomy-skill routing for anatomical scenes and ElevenLabs for newly generated narration. The supplied Anatomy skill is read before visual planning; its outputs retain semantic target IDs through the chosen renderer. ElevenLabs output supplies the scene/word timing candidates and audio provenance. Missing skill/access is reported instead of silently substituting generic diagrams or test voices. Preferences participate in storyboard and downstream hashes while research and writing remain reusable.
+
 IDEA → RESEARCH → CONTENT STRATEGY → SCRIPT → STORYBOARD → VISUAL DESIGN → ASSET GENERATION/ACQUISITION → ANIMATION → NARRATION SYNCHRONIZATION → AUDIO MIXING → VIDEO RENDERING → QUALITY ASSURANCE → PUBLICATION PACKAGE.
 
 The schema files in schemas/ and the self-contained orchestrator references describe project, script, storyboard, assets, timeline, narration, mix and render configuration. Scene IDs link script/storyboard/timeline. A visual target ID in a storyboard is referenced by an event; its cue_id resolves to actual narration timestamps. A renderer must implement those target IDs. Schema consistency alone cannot prove the renderer highlights the correct anatomical object.

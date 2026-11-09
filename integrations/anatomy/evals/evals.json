@@ -1,0 +1,113 @@
+{
+  "skill_name": "anatomy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm writing a blog post about how a token-bucket rate limiter works. Can you make me one interactive isometric illustration for it, the polished kind (like Linear's site), as a single HTML file I can just open? My blog has a white background. The bucket holds 20 tokens, refills 5 per second, and each request takes one token; requests get rejected when it's empty.",
+      "expected_output": "A single standalone HTML file, light theme, with one framed isometric figure of a real physical object that explains a token bucket (tokens refilling, requests taking tokens, rejection when empty), live readout with true numbers, model-coupled time-based motion, keyboard/pointer interaction. Every curved part (a hopper, a drum, a funnel) is smooth-shaded with no stepped tone blocks, every row of ticks, ribs or bolt dots ends on a real edge or fades out instead of stopping mid-surface, and nothing passes through anything; any pipe or chute is recorded and `node build.mjs --audit` ends `audit passed` with zero on every failing line. It was checked with 4x close-ups of every joint, and every PNG was looked at. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We need a figure for our Next.js docs explaining database connection pooling: a pool of 10 connections, requests borrow a connection and give it back, and when all 10 are busy new requests wait in a queue. Build it as a React component (TSX) we can drop into the app, and also give me a static HTML preview so I can look at it right now. Dark theme. It should look like a crafted physical object with fine details, not a boxes-and-arrows diagram.",
+      "expected_output": "A React TSX component (plus any geometry/CSS files) and a standalone HTML preview, dark theme, showing connection pooling as a real object with many small parts, live readout, painter's order correct, motion/interaction. Lines, hoses or cables that represent connections run along the structure in lanes and land on real ports, never through another part or across the subject's face; where two cross on screen the nearer is drawn on top. If the figure has tubes or round parts, their shapes are recorded with kit/audit.mjs and the preview's build reports zero audit problems. Curved parts show no tone staircase and no texture stops abruptly. 4x close-ups of the junctions were taken and read. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "make an isometric svg explaining how a CDN edge cache works (cache hit vs miss, TTL of 60s) for our landing page. dark, premium, lots of small detail. just give me the svg file, and a png preview if you can",
+      "expected_output": "A standalone dark SVG file (styles embedded) of a crafted isometric object explaining a CDN edge cache (hit vs miss, TTL 60 s), rich in small parts, monochrome with one accent, no floating labels. No line passes through a part, every crossing is in depth order, curved surfaces are smooth-shaded without a staircase, and every texture (vents, ticks, bolt circles) ends on an edge or fades. A PNG preview plus 4x close-ups were made and looked at. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "For a chemistry explainer, make an interactive isometric figure of a Bunsen burner on a lab bench, showing how opening the air collar turns the lazy yellow flame into a roaring blue cone. I want the flame to look real, so use a WebGL shader for it, but keep the crafted line-drawing look for the burner itself. One HTML file I can open, dark theme.",
+      "expected_output": "A single standalone dark HTML page built with the kit. The burner is SVG with many small parts made with kit/lathe.mjs: a weighted base, a barrel, a rotating air collar with real air holes, a jet and a ribbed gas inlet with a hose from kit/tube.mjs, on a bench plate, with an optional tripod and gauze. Every curved profile (base dome, barrel flare, inlet) is smooth-shaded with no tone staircase, from smooth knots or an analytic profile with smooth.slope; the inlet ribs and any bolt circle fade toward the limb (ribsOf/dotsOf with fade) instead of stopping. The hose leaves the inlet along its axis, lies on the bench without passing through the base, tripod or bench, and is gapped under any clamp or band; all shapes are recorded with kit/audit.mjs and `node build.mjs --audit` ends `audit passed`, zero on every failing line. The flame is a WebGL shader on glLayer (glScript inlined), in a canvas between a back SVG (bench, base, everything the flame covers) and a front SVG (whatever passes in front of it, such as the near tripod leg or gauze). The canvas has pointer-events none and blends with screen and premultiplied output. The flame lives in world space: it is ray-marched along towardViewer() around the barrel axis, sized in world units, and its base registers with the barrel rim from the same numbers as the SVG. Its colour and shape follow the air-to-gas ratio from a small model continuously (a luminous yellow sooty flame turning into a blue inner cone and pale outer mantle) through eased envelopes, with no instant colour switch. Lighting and turning off are attack-and-decay envelopes built on the kit's burst and settle (inlined by glScript, not redeclared), with constant geometry passed through glLayer's fixed uniforms. No term is cut at a bound or at the canvas edge, and the output is tonemapped and dithered. The device ratio is capped at 1.5, the shader renders only while lit and onscreen, reduced motion shows one still flame, and the SVG reads without WebGL. The live readout (collar opening and qualitative flame state; air/gas ratio or temperature only with an explicitly justified, sourced model) comes from the model, with pointer and keyboard control and an optional user-pausable demo. The figure was checked with drive.mjs contact sheets slowed with [\"slow\", 0.05] across lighting, a full collar sweep and turning off, plus 2x and 4x crops at the barrel rim and 4x close-ups of the hose, inlet and collar in both themes, a --no-webgl run showing the SVG burner alone, and a --reduced run. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "For an article on how espresso machines work, make an interactive isometric figure of a heat-exchanger espresso machine with the side panel off: boiler, heat-exchanger tube, group head, pump, steam wand, pressure gauge and all the pipework between them. Show water flowing through when you pull a shot. Lots of fine detail, it should hold up when people zoom in. Standalone HTML, light theme.",
+      "expected_output": "A single standalone light HTML page built with the kit: a real espresso machine with its side panel off, its boiler, group head, gauge and fittings turned with kit/lathe.mjs and its pipework from kit/tube.mjs, with a live readout from a small model (sourced or explicitly illustrative pressure/temperature/flow, with no unsupported precision) and a calm pull-a-shot interaction. Every pipe is routed from real ports along the structure (leaving each port on its normal, running parallel to the boiler or round it at a fixed radius, crossing other lines only on straights and well apart in depth), never across the front of the boiler or group; it ends on a flange, union nut or fitting on a real port, never in the air. Nothing is sunk into anything: flanges sit flush or on saddle pads on the curved boiler, branches leave from ball tees, valves sit on straight runs, and every collar, clamp, band or valve gaps the pipe it wraps. Every item records its shape in A.recorder, A.settle sets the painter's keys, and `node build.mjs --audit` ends `audit passed`, zero on every failing line, with no interlock hidden by a key bias. The boiler, group head dome and gauge are smooth-shaded with no tone staircase or scalloped bands (analytic profiles with smooth.slope or bandsOf for the boiler), seams sit under the outline, and every bolt circle, rib row or rule line ends on a real edge or fades out (dotsOf/ribsOf with fade, fadeLineSvg). Pipe stripes run onto their end caps with no hairline at chunk joints. The response shows that 4x close-ups of every junction (each tee, flange, union, valve, clamp and crossing) and every curved body were taken in both themes and read, and that the water-flow motion has no pop. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Use Anatomy to explain the structure of an animal cell and how a soluble protein is secreted. I want a downloadable interactive file and a clear view on my phone.",
+      "expected_output": "A complete standalone HTML file using the original kit palette. A curved scientific cutaway with purposeful organelle interiors, meaningful focus views, native controls, and a distinction between mRNA and newly made protein. The process shows translation, cargo folding, a surrounding carrier budding and travelling, Golgi delivery/sorting, and membrane fusion/release. It is not a flat base plate with organelle icons, changing prose only, or one unchanged marker travelling between stations. Biological simplifications and the checks actually run are reported. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources. Test both sides of every phase boundary for identity, pose and visibility continuity; verify cargo containment and intentional membrane changes separately from model range checks.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "The inline Anatomy preview is not appearing. Give me a downloadable version of the explainer you just created.",
+      "expected_output": "A saved, self-contained HTML file with its styles, drawing, scripts and original MIT attribution included. It works independently of ChatGPT host-only styles or APIs, keeps the existing file identity on update, and is delivered with a real clickable download link. No claim that a file was saved unless the save operation succeeds. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "My machine cannot launch Chrome; socket creation is denied. Create a light Anatomy SVG with a preview and check it as far as possible.",
+      "expected_output": "A useful artifact with build/model checks and a static SVG render in the actual kit palette, viewed at normal size and close range. The renderer retains figure-specific styles and exposes unsupported tokens instead of quietly drawing black silhouettes. Browser layout, native input and shader testing remain explicitly unverified. No retry that bypasses the operating-system restriction and no fabricated audit or browser pass. Apply references/evaluation-rubric.md; distinguish executed checks from unverified checks and keep numeric claims grounded in inputs or sources.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Build an interactive token bucket: capacity 20, refill 5 tokens per second, one token per request. Show correctness at 15, 30, 60 and 120 fps, pause halfway, then resume.",
+      "expected_output": "Domain time remains correct at each frame schedule; tokens stay within capacity, accepted requests deduct exactly one, rejected requests deduct none. Pause freezes simulation and effects. Resume preserves state without a jump. Tests use equal elapsed simulated times and include a dropped frame; visual easing cannot slow the domain clock.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Make a polished cutaway gear pair with 12 and 36 teeth. Let me drag the driver and watch their rotation, reverse it quickly and use the keyboard.",
+      "expected_output": "Coupled external gears rotate oppositely with a 3:1 angular-speed ratio, valid meshing geometry and stable world pivots. Unwrapped angles avoid jumps at full turns. Pointer, native/keyboard controls, rapid reversal and pause work without independently eased gear drift; simplified teeth are identified if used.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "Make an eight-stage secretion explainer. I want to scrub backward, pause at fusion, and use it with reduced motion enabled.",
+      "expected_output": "State is derived consistently on seek; RNA and protein identity are distinct, cargo stays in the correct compartment, membrane changes support budding and fusion, and stage boundaries have no unexplained disappearance. Reduced motion exposes meaningful static phases and controls without an autonomous loop. Simplified timing and topology are disclosed; sources support the actual claims.",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "Polish a simple single-theme light figure with six necessary parts. Keep it clean, readable on a phone, and do not add extra mechanisms.",
+      "expected_output": "Preserves six meaningful parts and light-only scope; improves silhouette, spacing, materials, legible labels and controls. Does not fill smooth surfaces with fake bolts to reach a quota. Checks actual 390px presentation and useful close-up details.",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "Make an interactive flame figure. Pause while it is burning, resize it, then test with WebGL unavailable.",
+      "expected_output": "Pause freezes all time-based effects; resize preserves registration and current state. A meaningful static flame/state fallback explains the phenomenon without WebGL. No invented temperature measurement. Real-browser validation is distinguished from static/model checks.",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "Use this unsourced sketch to show exact boiler pressure and temperature throughout a heating cycle. It has no material data or calibrated equations.",
+      "expected_output": "Identifies missing basis for exact numerical outputs, uses a clearly qualitative or explicitly illustrative model unless defensible data are supplied, and avoids invented precision. Does useful design work without presenting guessed physics as verified.",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "Use Anatomy to make a rich interactive explanation of a mechanical watch. I want to understand what controls the motion, including a slow inspection mode and a way to see the hidden layers.",
+      "expected_output": "A recognisable layered movement with the relevant power, regulating and transmission relationships supported by sources or clearly bounded simplifications. Main forms, working internals, interfaces and finish are actually modelled. Slow/apart inspection reveals relationships while preserving meaningful attachments and state. No generic dial with decorative independently spinning wheels. Compare actual renders at normal size and key junction close-ups against a relevant gallery benchmark; report observations, not claimed parity.",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "Use Anatomy to explain binary search in one polished interactive figure. The picture itself should explain why half the candidates can be discarded.",
+      "expected_output": "A coherent physical analogy makes comparison and candidate-range reduction visible in geometry, with a discoverable input and inspectable outcome. Intermediate and not-found behavior are correct where supported by the interface. A changing paragraph over unchanged blocks fails. The object remains dominant; structural interfaces and materials carry the craft, rather than interface badges or unrelated detail.",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "Use the bundled animal-cell example as inspiration, but bring the illustration up to the quality of the Anatomy gallery and make the secretion process physically legible.",
+      "expected_output": "Treats the supplied specimen as a legacy schematic, not a finished benchmark. Reworks the tray-like silhouette, shallow generic organelles and global process overlay instead of merely changing CSS or text. Models subject-specific enclosing surfaces, lumen/interface relationships, depth-aware carrier motion and an actually useful focus view. Checks source-backed biology and shows a rendered comparison plus transition inspection, with truthful browser limitations.",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "Make a small premium Anatomy mechanism explaining an easing curve. Keep the figure compact, but retain the construction quality of the gallery.",
+      "expected_output": "Uses a compact scope without equating compactness with primitive construction. The actual curve determines the moving mechanism; the subject has legible thickness, attachment and finish. A small number of parts is acceptable when complete. Chooses implementation based on needed behavior, not always the shortest gauge example, and inspects a representative action and close-up.",
+      "files": []
+    }
+  ]
+}

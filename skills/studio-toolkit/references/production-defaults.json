@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "diagrams": {
+    "preferred_skill": "anatomy",
+    "skill_path": null,
+    "required_for_diagram_scenes": true
+  },
+  "narration": {
+    "provider": "elevenlabs",
+    "voice_id": null,
+    "model_id": "eleven_multilingual_v2",
+    "output_format": "mp3_44100_128"
+  }
+}
