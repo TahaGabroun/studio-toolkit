@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a portable single-skill ZIP/.skill with all runtime references and utilities."""
 from pathlib import Path
-from zipfile import ZipFile,ZIP_DEFLATED
+from zipfile import ZipFile,ZipInfo,ZIP_DEFLATED
 import argparse
 import json
 import re
@@ -34,7 +34,11 @@ def package(destination):
     items['references/upstreams.lock.json']=(ROOT/'upstreams.lock.json').read_bytes()
     items['references/distribution.md']=b'# Distribution\n\nThis is a single skill with specialist references and executable local helpers. Import only in a ChatGPT host that supports skill uploads. No automatic ChatGPT installation is performed. Rendering needs a filesystem, Python dependencies, Node/Remotion where selected, a browser and FFmpeg. Ordinary chat can apply writing workflows; it cannot claim a local render.\n'
     with ZipFile(destination,'w',ZIP_DEFLATED,compresslevel=9) as z:
-        for name,content in sorted(items.items()):z.writestr('studio-toolkit/'+name,content)
+        for name,content in sorted(items.items()):
+            info=ZipInfo('studio-toolkit/'+name,date_time=(1980,1,1,0,0,0))
+            info.create_system=3
+            info.external_attr=0o100644<<16
+            z.writestr(info,content,compress_type=ZIP_DEFLATED,compresslevel=9)
     with ZipFile(destination) as z:
         assert sum(Path(n).name.lower()=='skill.md' for n in z.namelist())==1
         assert all('..' not in Path(n).parts and not n.startswith('/') for n in z.namelist())
