@@ -21,9 +21,15 @@ For future animated anatomical, biological or technical mechanism diagrams, use 
 | Browser/SVG/simulation rendering | motion-design | deterministic seek(t) source + master |
 | Full React video and compositing | remotion-video | composition + rendered master |
 | Reusable diagrams, typography, camera, editorial/terminal inserts | remotion-motion-graphics | composition / insert + evidence |
+| Character-led 3D cartoon explainers | cartoon-animation | poseable characters, authored shots and measured captions |
+| Expressive 2D stick-figure explainers | stick-figure | Canvas rigs, environments, camera and sound cues |
+| Quiet black/white line motifs | minimalistic-graphics | short JSON-driven insert |
+| Supplied numeric data animation | animated-graph | data-faithful graph and counter |
+| Illustrative 3D journey | map-route | schematic city/route; no navigation claim |
+| Layered device teardown | exploded-view | labelled generic phone or authored geometry |
 | Anatomical, biological and technical mechanism diagrams | anatomy (supplied integration) → selected motion specialist | approved anatomical layers, semantic target IDs and provenance |
 
-Read the selected sibling's SKILL.md before specialist work. In the standalone package the same content is under `references/specialists/<name>.md`. [aliases](references/aliases.md) maps the archive identifiers; aliases route here and do not install duplicate skills. Use only relevant specialists, in story order. Apply their procedures yourself; delegation is optional and depends on the host and user's scope.
+Read the selected sibling's SKILL.md before specialist work. In the standalone package the same content is under `references/specialists/<name>.md`. [aliases](references/aliases.md) maps the archive identifiers; aliases route here and do not install duplicate skills. For these six adopted animation workflows, read [animation runtime and timing handoff](references/animation-workflows.md). In the single-skill ChatGPT bundle choose the same specialist reference by intent. Use only relevant specialists, in story order. Apply their procedures yourself; delegation is optional and depends on the host and user's scope.
 
 ## Execute a production
 

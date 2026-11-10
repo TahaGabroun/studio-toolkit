@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animated graph"
+  short_description: "Animate supplied numeric series as a minimal line graph with a "
+  default_prompt: "Use $animated-graph to create an original, narration-aware animation with inspected frames."

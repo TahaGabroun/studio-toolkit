@@ -1,0 +1,4 @@
+interface:
+  display_name: "Minimal line animation"
+  short_description: "Create quiet black-and-white line-art animations with a hopping"
+  default_prompt: "Use $minimalistic-graphics to create an original, narration-aware animation with inspected frames."

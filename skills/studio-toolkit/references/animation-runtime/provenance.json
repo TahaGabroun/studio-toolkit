@@ -1,0 +1,297 @@
+{
+  "repository": "https://github.com/artemnovitckii/claude-animation-skills",
+  "commit": "5dbea55c23aa6a5c93dc3cfb5583840513b56b94",
+  "license": "MIT; fonts OFL-1.1",
+  "copied_source_files": [
+    {
+      "upstream_path": "LICENSE",
+      "sha256": "87111395ddb9252e4a9eb039a1bea0439571e069cdf497fd519737b4d3168d66",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/anim.py",
+      "sha256": "e9f984972e45b5edbfb7d7b4f07d062d8d9fd19054e6e835c12cff21c203f1d5",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/fonts/OFL-inter.txt",
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/fonts/OFL-intertight.txt",
+      "sha256": "4fde1e56a50d4632cffcee7df85585274c60765ff893abe6f49da0ca9ab675b8",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/fonts/OFL-jetbrainsmono.txt",
+      "sha256": "30f0c136e3c88e422d0791acd97238870f9054a9729bc34cf2ff0d4ed8cac4ad",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/fonts/OFL-poppins.txt",
+      "sha256": "5fafaf2b67f00b5c30e6ee2382d99c68d287f1debc2d17440f517b3b78ad524c",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/fonts/inter-500-normal.woff2",
+      "sha256": "b0e7558f4710a1e255b93e3deefe3aebb19f3bb41c150f685a74d3b1a1c79e87",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/fonts/inter-600-normal.woff2",
+      "sha256": "62553d159189834af73c9a6264704be5b2bee9a08da66a14768d8e5c6ffd2cdb",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/fonts/inter-700-normal.woff2",
+      "sha256": "aac638f7503cebb084ec494cf00f75f7d8260d50c2f4e7820bccabba09626a3a",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/fonts/inter-tight-latin-700-normal.woff2",
+      "sha256": "9c4f02f38678f2628292d66c4f7a1a6a06af7ffac4d279359b09074e7d0f1fe0",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/fonts/inter-tight-latin-800-normal.woff2",
+      "sha256": "b4b4a0877ce8d65c2c194dec15236e4861d3b3c111b3aa3d54fc4efbe6171027",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/fonts/jetbrains-mono-latin-500-normal.woff2",
+      "sha256": "cb182feeed4d798ff6961d3c79f7026279448fca0676438aaecb21f3fc39553a",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/fonts/poppins-latin-400-normal.woff2",
+      "sha256": "7d93459d86585bfcdbb7e0376056226adb25821ee54b96236fe2123e9560929f",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "kit/package-lock.json",
+      "sha256": "1fbeb50d499b17b8b5a7c5c38a019353dd379a76135b360a6566224dffbf057f",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/package.json",
+      "sha256": "8026d2375799b135e87453f6b4e61564b389f9b9cca1cb5d33ec64cf2fb620c6",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/setup.sh",
+      "sha256": "03615a2c8db0663ba3f341285c8951722b2ec2965f05c1c59741a86958a75505",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "kit/words.py",
+      "sha256": "94720c23ecd2ea4afaa3d1a18fb9ea764652a8e7abc9bd1d3ae0e9ccaf584d02",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/breakdown/build.py",
+      "sha256": "bd55bcfe8cc0f58f3b56fc57328b0a8cf7c4415d56d5390ba719307182da613c",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/breakdown/template.html",
+      "sha256": "a5cfe01654b5e204bd0cb190781f1e15b2fdc8eed600f85798e98ac24cf5982c",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/graph/build.py",
+      "sha256": "734b3dd038f63045b116a760b7f76cda176f64baeb4032d4270915376d52453c",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/graph/template.html",
+      "sha256": "f8a1427f6c189113d5eba0f4d28c4cbfc2791958b9981cf905854d9bbd74b599",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/map-route/build.py",
+      "sha256": "2de4db4c146cae9a16767ba64cf7498e9fc38339ff88f169a0223469d2c1301a",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/map-route/template.html",
+      "sha256": "a86f7faa7eeb82e201fb242c89c32822e72b28a8a59de548d20cda70db34bdc7",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/minimalistic-graphics/build.py",
+      "sha256": "449c8e728316306acceb2b11ee313cea89563a377b7e8e1deab29ddc07cd047e",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/minimalistic-graphics/template.html",
+      "sha256": "24edece1fe079f4220683d1be398d61157490275b8c6e1adad9d6a247a62c63c",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/make.sh",
+      "sha256": "a5ccb112a8d71aecde3b1fdb9a5c4888f41911df5a64e8a84773bddc85781085",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/audio/words_ref.json",
+      "sha256": "6e060f13c07c6fca9aac1a2148e916fc7472ab31d6e459b2dd2f89deb3b40bd8",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/audio.py",
+      "sha256": "19036792667d3d0e81c5ecda10fef51b7c83622f0611b6fe73947e526035e8b3",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/captions.json",
+      "sha256": "5d2f14c85675fd783197a51a9817d8ce28c5c0a2dc7ac9987214b899623dd16a",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/script.json",
+      "sha256": "454088dab7c6abe1dbd980562a79dd160053eecbb20018dfd2396e7a2259af45",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/chars.js",
+      "sha256": "d804dee2591025db0636e096c511442811b5b87ce41c5c0f1a3cf3ed80e85170",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/env.js",
+      "sha256": "281f8e565515cd314920cf152eb5fccd1b5a91c5915e267b8209b0a56866ad35",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/fonts/Lora-Variable.ttf",
+      "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/fonts/OFL-lora.txt",
+      "sha256": "bff1e9160cc4bb894123d56542cac194e7960a8b9ef7c52f10617e25853110de",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/fonts/OFL-poppins.txt",
+      "sha256": "5fafaf2b67f00b5c30e6ee2382d99c68d287f1debc2d17440f517b3b78ad524c",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/index.html",
+      "sha256": "77a903aa376209a7a18ba4c5cdf3ef35ec14b04c91dca2ef0fecf0451b04dd92",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/lib.js",
+      "sha256": "3ef5d2b5d08af18dc7c568234cc5884f9fbff6164b72371861deee764a2fa2ec",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/main.js",
+      "sha256": "a32521c35be7b1f1051f5796dc662b08cb674a5f9f56133dc6df3bc7bc5e2a1d",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/shots.js",
+      "sha256": "e7acedcdbd4da31791a694253a25b820f1d1f998209d1e6e67fcf1af277d731c",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/warp.js",
+      "sha256": "ea43f7bbb3e42696405c80e5ba033c4aa5211546b3c07f6988e57309c35b15f4",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/template/web/words.js",
+      "sha256": "fc63f0d9386123b70427d6783fee6614353260d9f5adde72065b2fb3ea8f0a36",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/tools/align.py",
+      "sha256": "ed8c3e3bdb991fa70b33d610bd31a1febc1dd039db9dc2eb68007f4d8dd562e2",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/tools/render.js",
+      "sha256": "3ac1a430467c1df6252a647e4b9a59c63865cff856a57ea4ad647f80c7b37e19",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/tools/tts_elevenlabs.py",
+      "sha256": "f03c1a6d6c5f51b030aca1e00771d27f9a56f4de0d51c1a037c95b43aa220468",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/stick-figure/engine/tools/tts_kokoro.py",
+      "sha256": "017ad305f64ef9500a4a8b846cdbf90cc5e5197c9b397395b145871dca0d6666",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/captions.py",
+      "sha256": "3e2cf1ca40889657523f6a56bd4804cce121d4b5dbb889b8e006b082c764737e",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/index.html",
+      "sha256": "1166a7a23155ffa8894170b68248edf1276cffa4cd7479b973dca375913d47a1",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/render.mjs",
+      "sha256": "8bcf3fd82e0a0b4648aa8ac2885b9bad9fdc63fdb943ab1fcb0d019aa686de48",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/anim.js",
+      "sha256": "a79b96b3692c34d54bc186209ef6bac36c5ac34b2a954f182b186483d7a6dc49",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/human.js",
+      "sha256": "5d92203e2e2cf1aab7e56b913216f0b41c480e522b3c1046334e91d890b080c8",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/main.js",
+      "sha256": "d705e5218de60c2ab7627ccf44fb525c66928845b7492c29ccfe7764dd835428",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/materials.js",
+      "sha256": "e761b1ff371a88382928d16bc708d12d8c5151fb46e77895ec32aff015bde4ac",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/props.js",
+      "sha256": "fcea59d3e7de9eb67bcadc585e597f999cd5ec774b91592b45396eee4e9d71af",
+      "adoption": "unchanged"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/shots.js",
+      "sha256": "91ee9aeb8c76cf0b6e4551c0cc44bf39c1bb67d79ba6b2f5e3bb1d8c92012954",
+      "adoption": "adapted"
+    },
+    {
+      "upstream_path": "skills/zach-d-films/engine/src/textures.js",
+      "sha256": "3558d0e2bf8281dbf06cf4727172c2e72cc35fb3d6d6ce3bab1a3462d0ad7751",
+      "adoption": "unchanged"
+    }
+  ],
+  "excluded": [
+    "Claude plugin/installer",
+    "upstream promotional images",
+    "sample synthesized narration WAV"
+  ],
+  "added": [
+    "portable Python renderer/CLI",
+    "original silent starters",
+    "Noto Sans Arabic OFL fallback"
+  ]
+}

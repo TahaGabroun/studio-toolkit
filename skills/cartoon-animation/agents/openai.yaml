@@ -1,0 +1,4 @@
+interface:
+  display_name: "3D cartoon animation"
+  short_description: "Create procedural 3D cartoon explainers with poseable character"
+  default_prompt: "Use $cartoon-animation to create an original, narration-aware animation with inspected frames."

@@ -1,6 +1,6 @@
 {
   "name": "Studio Toolkit",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "skills": [
     {
       "id": "claude-motion-adapted",
@@ -52,6 +52,36 @@
       "id": "youtube-strategy",
       "aliases": [
         "studio-youtube-channel"
+      ]
+    },
+    {
+      "id": "cartoon-animation",
+      "aliases": [
+        "zach-d-films"
+      ]
+    },
+    {
+      "id": "stick-figure",
+      "aliases": []
+    },
+    {
+      "id": "minimalistic-graphics",
+      "aliases": []
+    },
+    {
+      "id": "map-route",
+      "aliases": []
+    },
+    {
+      "id": "exploded-view",
+      "aliases": [
+        "breakdown"
+      ]
+    },
+    {
+      "id": "animated-graph",
+      "aliases": [
+        "graph"
       ]
     }
   ],

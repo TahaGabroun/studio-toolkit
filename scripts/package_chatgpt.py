@@ -7,12 +7,16 @@ import json
 import re
 import sys
 ROOT=Path(__file__).resolve().parents[1]
+EXCLUDED={'__pycache__','node_modules','.venv','models','.work','.git'}
+
+def distributable(file):
+    return file.is_file() and not EXCLUDED.intersection(file.parts)
 
 def package(destination):
     destination=Path(destination);destination.parent.mkdir(parents=True,exist_ok=True)
     items={}
     for f in (ROOT/'skills/studio-toolkit').rglob('*'):
-        if f.is_file() and '__pycache__' not in f.parts:items[str(f.relative_to(ROOT/'skills/studio-toolkit'))]=f.read_bytes()
+        if distributable(f):items[str(f.relative_to(ROOT/'skills/studio-toolkit'))]=f.read_bytes()
     # UI metadata is host-specific; the portable bundle works from SKILL.md itself.
     for skill in json.loads((ROOT/'manifest.json').read_text())['skills']:
         name=skill['id']
@@ -24,12 +28,12 @@ def package(destination):
         text=re.sub(r'\]\((references|scripts|assets)/',lambda m:f']({name}/{m[1]}/',text)
         items[f'references/specialists/{name}.md']=text.encode()
         for f in source.rglob('*'):
-            if f.is_file() and f.name!='SKILL.md' and '__pycache__' not in f.parts:
+            if distributable(f) and f.name!='SKILL.md':
                 items[f'references/specialists/{name}/{f.relative_to(source)}']=f.read_bytes()
     for f in (ROOT/'third_party/licenses').iterdir():items[f'references/licenses/{f.name}']=f.read_bytes()
     # Keep the supplied Anatomy engine/examples intact, with its manifest exposed as a reference.
     for f in (ROOT/'integrations/anatomy').rglob('*'):
-        if f.is_file() and '__pycache__' not in f.parts:
+        if distributable(f):
             relative=f.relative_to(ROOT/'integrations/anatomy').as_posix()
             if relative=='SKILL.md':relative='guide.md'
             items[f'references/integrations/anatomy/{relative}']=f.read_bytes()

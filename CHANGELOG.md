@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0 — 2026-11-10
+
+Adopted six cartoon/template animation skills from artemnovitckii/claude-animation-skills with MIT/OFL attribution and retained rigs, props, textures, templates and sound code. Added a shared portable runtime, reproducible dependencies, explicit measured-audio import, deterministic capture and media QA. Kept all existing skill IDs and Anatomy/ElevenLabs preferences; added neutral aliases and bundled the same workflows for ChatGPT.
+
 ## 0.3.0 — 2026-11-10
 
 Bundled the supplied MIT Anatomy 0.4 adaptation with its pinned drawing kit, examples and references; future structured diagrams route through it; new production narration uses ElevenLabs. Added persistent project preferences, dependency preflight, a continuous-speech/timestamp helper, content-addressed response reuse and provider-timing review. Existing calibration films remain reproducible; no live external integration is claimed without real access.

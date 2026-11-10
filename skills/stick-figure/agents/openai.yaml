@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stick figure animation"
+  short_description: "Create expressive Canvas stick-figure explainers with character"
+  default_prompt: "Use $stick-figure to create an original, narration-aware animation with inspected frames."

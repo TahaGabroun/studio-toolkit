@@ -1,0 +1,4 @@
+interface:
+  display_name: "Illustrative map route"
+  short_description: "Create seeded illustrative 3D city-route animations with a foll"
+  default_prompt: "Use $map-route to create an original, narration-aware animation with inspected frames."

@@ -46,5 +46,11 @@
     "commit": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6",
     "license": "MIT",
     "license_file": "third_party/licenses/youtube-agent-skill.txt"
+  },
+  {
+    "repository": "https://github.com/artemnovitckii/claude-animation-skills",
+    "commit": "5dbea55c23aa6a5c93dc3cfb5583840513b56b94",
+    "license": "MIT; fonts SIL OFL-1.1",
+    "license_file": "third_party/licenses/claude-animation-skills.txt"
   }
 ]

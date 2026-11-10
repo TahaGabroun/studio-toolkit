@@ -65,7 +65,8 @@ class ProductionDefaults(unittest.TestCase):
         target = Path(self.temp.name) / "skills"
         command = [sys.executable, str(ROOT / "scripts/manage_skills.py")]
         installed = subprocess.run(command + ["install", "--dest", str(target), "--with-anatomy"], check=True, capture_output=True, text=True)
-        self.assertEqual(len(json.loads(installed.stdout)), 10)
+        expected = {item['id'] for item in json.loads((ROOT / 'manifest.json').read_text())['skills']} | {'anatomy'}
+        self.assertEqual({item['skill'] for item in json.loads(installed.stdout)}, expected)
         self.assertEqual((target / "anatomy").resolve(), (ROOT / "integrations/anatomy").resolve())
         subprocess.run(command + ["uninstall", "--dest", str(target), "--with-anatomy"], check=True, capture_output=True)
         self.assertFalse((target / "anatomy").exists())

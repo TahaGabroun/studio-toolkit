@@ -12,3 +12,8 @@ work/
 *credentials*.json
 *client_secrets*.json
 .DS_Store
+.work/
+*.snaps/
+examples/animation-specs/*.mp4
+examples/animation-specs/*.sheet.jpg
+examples/animation-specs/*.qa.json

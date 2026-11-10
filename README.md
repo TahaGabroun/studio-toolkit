@@ -1,6 +1,6 @@
 # Studio Toolkit
 
-Nine native Codex skills and executable utilities for research-backed, narration-driven video production. This is a tested local production toolkit, not a promise that every generated video is ready for release. Human creative, audio, scientific and publishing approval remain separate from automated checks.
+Fifteen native Codex skills and executable utilities for research-backed, narration-driven video production. This is a tested local production toolkit, not a promise that every generated video is ready for release. Human creative, audio, scientific and publishing approval remain separate from automated checks.
 
 ## Features
 
@@ -9,6 +9,7 @@ Nine native Codex skills and executable utilities for research-backed, narration
 - Deterministic HTML/SVG/JavaScript and React/Remotion production with local assets, procedural sound and frame-based narration cues.
 - Structured artifact schemas, resumable hash checkpoints, caption consistency, media decoding, loudness measurement and contact sheets.
 - Anatomy-skill routing for anatomical scenes, plus cached ElevenLabs production narration with provider-measured scene/word cues.
+- Six adopted animation workflows: 3D cartoons, stick figures, minimalist line art, data graphs, illustrative map routes and exploded views.
 - English and Arabic/RTL workflows; WAV, MP3 and M4A narration; landscape, vertical, square and optional 4K dimensions.
 
 ## Architecture
@@ -19,6 +20,8 @@ flowchart LR
   Y --> S[youtube-script-writer]
   S --> C[content-os: artifacts and assets]
   C --> M[claude-motion-adapted: motion and sound]
+  M --> CA[cartoon-animation + stick-figure]
+  M --> IN[animated-graph + minimalistic-graphics + map-route + exploded-view]
   M --> H[motion-design: HTML/SVG]
   M --> R[remotion-video + remotion-motion-graphics]
   AN[anatomy skill: biological design] --> M
@@ -27,7 +30,9 @@ flowchart LR
   T --> H
   T --> R
   T --> A[Captions + audio mix]
-  H --> Q[Render + automated QA + frame review]
+  CA --> Q[Render + automated QA + frame review]
+  IN --> Q
+  H --> Q
   R --> Q
   A --> Q
   Q --> P[Publication package]
@@ -47,7 +52,7 @@ python3 -m venv .venv
 .venv/bin/python skills/studio-toolkit/scripts/studio.py doctor
 bash install.sh install --global
 bash install.sh validate --global
-# Include the supplied Anatomy skill (nine canonical skills + Anatomy):
+# Include the supplied Anatomy skill (fifteen skills + Anatomy):
 bash install.sh install --global --with-anatomy
 ```
 
@@ -75,6 +80,12 @@ Commands: `install`, `validate`, `list`, `update`, `uninstall` all accept `--glo
 | motion-design | Deterministic browser animation, capture and FFmpeg |
 | remotion-video | Full React/Remotion editing, narration, compositing and renders |
 | remotion-motion-graphics | Typography, diagrams, camera, terminal/editorial inserts and evidence |
+| cartoon-animation | Procedural 3D people, props, shaders and authored explainer shots |
+| stick-figure | Expressive Canvas character rigs, environments, transitions and sound code |
+| minimalistic-graphics | Quiet dot/step/orbit line-art inserts |
+| animated-graph | Supplied numeric series and synchronized counters |
+| map-route | Seeded illustrative 3D city routes and destination cards |
+| exploded-view | Six-layer phone insert or project-authored layered objects |
 
 The `claude-motion-adapted` identifier preserves provenance; no Claude runtime is needed. [Archive aliases](skills/studio-toolkit/references/aliases.md) prevent ambiguous routing without installing duplicate skills.
 
@@ -100,6 +111,20 @@ A runnable no-API HTML example is provided:
 
 For four complete reproducible Remotion projects and real rendered examples, clone [Studio Toolkit Demos](https://github.com/TahaGabroun/studio-toolkit-demos) beside this checkout.
 
+## Cartoon and template animation
+
+Ask: `Use $studio-toolkit to create an original stick-figure explainer, using ElevenLabs and measured captions.` Or invoke `$cartoon-animation`, `$stick-figure`, `$animated-graph`, `$minimalistic-graphics`, `$map-route` or `$exploded-view` directly. The portable ChatGPT skill routes these same intents through its specialist references.
+
+```bash
+bash skills/studio-toolkit/references/animation-runtime/kit/setup.sh
+.venv/bin/python scripts/animation.py doctor
+.venv/bin/python scripts/animation.py build animated-graph examples/animation-specs/graph.json --snap 0.5,3.5
+.venv/bin/python scripts/animation.py init stick-figure my-film/animation
+.venv/bin/python examples/run_animation_smoke.py --output /tmp/studio-animation-check
+```
+
+Read [animation workflows](skills/studio-toolkit/references/animation-workflows.md) for JSON specs, character APIs, audio/timing import, rendering and recovery. These adopted templates are vertical/30 fps. The 3D cartoon source renders at 720×1280 and upscales to 1080×1920; maps are schematic, device layers generic. New default starters are silent calibrations. No automatic substitute voice or live-provider claim is made. [Animation validation](docs/ANIMATION-UPDATE.md) records executed checks.
+
 ## Production preferences
 
 New projects receive production-config.json. Structured explanatory diagrams use the supplied Anatomy skill for visual design before HTML/Remotion implementation; newly generated production narration uses ElevenLabs. Read the [production workflow](skills/studio-toolkit/references/production-preferences.md) for skill discovery, voice setup, provider timings and reuse of cached responses. A missing skill/connection is reported explicitly. Existing supplied recordings and user overrides are preserved; the existing eSpeak/pulse examples remain calibration-only.
@@ -110,7 +135,7 @@ New projects receive production-config.json. Structured explanatory diagrams use
 .venv/bin/python skills/studio-toolkit/scripts/elevenlabs_narration.py my-film --voice-id VOICE_ID
 ```
 
-Configure ELEVENLABS_API_KEY in the environment, never in the project. The voice ID is explicit; no cloned voice is created. Actual provider speech requires working account access and may use credits. The helper preserves approved project artifacts and requires review before generated candidates enter the shared timeline. The nine canonical skills are retained; the supplied Anatomy skill is bundled separately under integrations/anatomy and can also be installed globally with --with-anatomy.
+Configure ELEVENLABS_API_KEY in the environment, never in the project. The voice ID is explicit; no cloned voice is created. Actual provider speech requires working account access and may use credits. The helper preserves approved project artifacts and requires review before generated candidates enter the shared timeline. The original nine skill IDs are retained alongside six animation specialists; the supplied Anatomy skill is bundled separately under integrations/anatomy and can also be installed globally with --with-anatomy.
 
 ## Dependencies and optional services
 
@@ -126,7 +151,7 @@ YouTube read-only APIs, yt-dlp captions, local Ollama insights and faster-whispe
 .venv/bin/python scripts/package_chatgpt.py
 ```
 
-`dist/studio-toolkit-chatgpt.skill` is a ZIP with exactly one SKILL.md, eight specialist references, scripts, schemas and license notices. It is designed for a ChatGPT host supporting skill import; actual import was not tested here. Ordinary ChatGPT does not acquire permanent skills from a Codex filesystem install. [Distribution details](docs/DISTRIBUTION.md).
+`dist/studio-toolkit-chatgpt.skill` is a ZIP with exactly one SKILL.md, fourteen specialist references, scripts, schemas and license notices. It is designed for a ChatGPT host supporting skill import; actual import was not tested here. Ordinary ChatGPT does not acquire permanent skills from a Codex filesystem install. [Distribution details](docs/DISTRIBUTION.md).
 
 ## Troubleshooting and updates
 
@@ -139,4 +164,4 @@ YouTube read-only APIs, yt-dlp captions, local Ollama insights and faster-whispe
 
 ## Sources and license
 
-Adapted from eight upstream projects, with useful executable code retained and native workflows rewritten. [SOURCES.md](SOURCES.md) records exact upstream commits, scope, limitations and copied files. All eight MIT notices were rechecked on 2026-11-09 and are preserved under third_party/licenses. Toolkit code is MIT. Third-party fonts, media, services and Remotion retain their own terms. No upstream example films, private recordings, product logos or credentials are bundled.
+Adapted from nine upstream projects plus the supplied Anatomy integration, with useful executable code retained and native workflows rewritten. [SOURCES.md](SOURCES.md) records exact upstream commits, scope, limitations and copied files. The initial eight MIT notices were checked on 2026-11-09; the animation upstream MIT/OFL notices were checked on 2026-11-10 and are preserved under third_party/licenses. Toolkit code is MIT. Third-party fonts, media, services and Remotion retain their own terms. No upstream example films, private recordings, product logos or credentials are bundled.

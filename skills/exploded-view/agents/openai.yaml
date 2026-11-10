@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exploded view animation"
+  short_description: "Create labelled 3D exploded-view inserts from a layered phone t"
+  default_prompt: "Use $exploded-view to create an original, narration-aware animation with inspected frames."
