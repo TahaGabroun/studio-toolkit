@@ -35,6 +35,13 @@ class Media(unittest.TestCase):
  def test_mux_never_silently_truncates(self):
     media.wav(self.root/'short.wav',np.zeros(4800))
     with self.assertRaises(ValueError):media.mux(self.video,self.root/'short.wav',self.root/'render/final.mp4')
+ def test_silent_qa_requires_explicit_intent_and_preserves_audio_checks(self):
+    for name in ['narration.json','captions.srt','timeline.json']:(self.root/name).unlink()
+    result=media.qa(self.root,self.video,silent=True)
+    self.assertEqual(result['status'],'pass');self.assertEqual(result['audio_intent'],'explicitly silent')
+    self.assertIn('No audio stream',media.qa(self.root,self.video)['errors'])
+ def test_silent_qa_cannot_hide_a_declared_voice(self):
+    with self.assertRaisesRegex(ValueError,'declared narration'):media.qa(self.root,self.video,silent=True)
 
 class RetainedCode(unittest.TestCase):
  def test_corpus_reindex_idempotent(self):

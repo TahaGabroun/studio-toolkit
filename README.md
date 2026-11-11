@@ -111,6 +111,29 @@ A runnable no-API HTML example is provided:
 
 For four complete reproducible Remotion projects and real rendered examples, clone [Studio Toolkit Demos](https://github.com/TahaGabroun/studio-toolkit-demos) beside this checkout.
 
+## Requirement-driven production direction
+
+Start with the video’s idea, audience and desired outcome. Studio Toolkit now creates a production plan that chooses relevant skills, a main renderer and scene-specific visual methods. Its review flow is:
+
+```mermaid
+flowchart LR
+  B[Idea + audience + constraints] --> P[Production direction + tool selection]
+  P --> C[Content and evidence review]
+  C --> L[Style frame + mobile view + motion proof]
+  L --> N[Actual narration + timed storyboard/animatic]
+  N --> F[Final animation + sound + rendering]
+  F --> Q[Encoded-media and creative review]
+  Q --> D[Publication package]
+```
+
+```bash
+.venv/bin/python scripts/studio.py plan my-film --requirements requirements.json
+.venv/bin/python scripts/studio.py next my-film
+.venv/bin/python scripts/studio.py review my-film --record actual-review.json
+```
+
+The agent infers structured requirements from your brief, records assumptions and uses the plan; you do not have to choose every tool manually. Failed reviews return to the affected phase, and changed inputs invalidate dependent evidence. A visual replan preserves an unchanged reviewed script. The helper does not generate speech/assets or invoke paid services. Reviews are performed by the agent; human approval is separate. [Director workflow and tool-selection matrix](skills/studio-toolkit/references/production-director.md) · [Executed validation](docs/DIRECTOR-UPDATE.md).
+
 ## Cartoon and template animation
 
 Ask: `Use $studio-toolkit to create an original stick-figure explainer, using ElevenLabs and measured captions.` Or invoke `$cartoon-animation`, `$stick-figure`, `$animated-graph`, `$minimalistic-graphics`, `$map-route` or `$exploded-view` directly. The portable ChatGPT skill routes these same intents through its specialist references.

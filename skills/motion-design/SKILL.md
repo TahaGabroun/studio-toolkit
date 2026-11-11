@@ -20,11 +20,13 @@ Choose this engine when SVG/HTML diagrams, simulations, text/layout or existing 
 1. Write brief, duration/FPS/resolution, scene table and time-bound visual referents.
 2. Prepare one or more style frames and inspect before rendering the whole timeline.
 3. Implement `window.seek(t)`, and verify seeking to times **out of order** gives identical frames.
-4. If `playwright` and Chromium are installed, from the repository root run:
+4. Resolve MOTION to this skill directory and STUDIO to the actual studio-toolkit directory. With Python Playwright/Chromium and FFmpeg installed, render using the project’s real duration/FPS/dimensions. Example for a six-second landscape scene:
+   ```bash
+   python3 "$MOTION/scripts/render_html.py" PROJECT/scene.html PROJECT/render/silent.mp4 --duration 6 --fps 30 --width 1920 --height 1080 --check-determinism
+   ```
+   In the single-skill package MOTION is references/specialists/motion-design; STUDIO is the package root. Use the short proof and director review flow before a full production.
+5. Mux actual sound where required, then run `python3 "$STUDIO/scripts/media.py" qa PROJECT PROJECT/render/final.mp4`. An intentionally soundless insert uses `--silent`; this flag cannot suppress missing narration in a project that declares it. QA creates PROJECT/qa/contact-sheet.jpg. Inspect opening, transitions, dense labels and the ending at full/mobile size; check flashes, off-screen labels, directionality and narrated referents.
 
-
-
-5. Inspect a contact sheet with `media.py qa out/scene.mp4 --contact-sheet out/qa.png` (requires FFmpeg and ffprobe). Look for flashes, off-screen labels, empty frames, wrong directionality and cuts that don't align with voiceover.
 6. If sound is separate, mux it at measured timestamps with FFmpeg; verify final mux duration and listen to head/middle/tail. Do not truncate narration unintentionally.
 
 ## Failure policy

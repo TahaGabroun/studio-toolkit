@@ -17,3 +17,5 @@ work/
 examples/animation-specs/*.mp4
 examples/animation-specs/*.sheet.jpg
 examples/animation-specs/*.qa.json
+
+.studio-director/

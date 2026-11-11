@@ -129,7 +129,13 @@ def acquire_response(root, plan, imported=None, transport=None):
     return response, False
 
 def generate(root, voice_id=None, imported=None, transport=None):
-    root = Path(root).resolve(); plan = request_plan(root, voice_id)
+    root = Path(root).resolve()
+    if (root/'production-plan.json').is_file():
+        import director
+        direction=director.current(root)
+        if direction['narration']['mode']!='generate':raise ValueError('Production direction does not request new speech; preserve the supplied recording or intentional silence')
+        if director.state(root,direction)[0]['status']!='pass':raise ValueError('Review content before production speech; no provider request was sent')
+    plan = request_plan(root, voice_id)
     if shutil.which("ffprobe") is None: raise ValueError("ffprobe is required to validate generated speech; no request was sent")
     response, cached = acquire_response(root, plan, imported, transport)
     segments, words = alignment_segments(response, plan)

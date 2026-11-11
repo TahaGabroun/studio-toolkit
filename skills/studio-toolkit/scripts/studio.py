@@ -92,11 +92,14 @@ def validate(root):
     root = Path(root)
     errors, warnings = [], []
     objects = {}
-    for name in ["project", "script", "storyboard", "timeline", "assets", "narration", "render-config", "mix", "production-config"]:
+    for name in ["project", "production-requirements", "production-plan", "production-config", "script", "storyboard", "timeline", "assets", "narration", "render-config", "mix"]:
         p = root / f"{name}.json"
         if not p.exists():
             if name == "project": errors.append("Missing project.json")
-            elif name != "production-config": warnings.append(f"Pending artifact: {p.name}")
+            elif name not in ["production-config", "production-requirements", "production-plan"]:
+                intent=objects.get('production-requirements',{})
+                no_voice=isinstance(intent,dict) and isinstance(intent.get('narration'),dict) and intent['narration'].get('mode')=='none'
+                if not (no_voice and name in ['script','narration','mix']):warnings.append(f"Pending artifact: {p.name}")
             continue
         try:
             objects[name] = read(p)
@@ -104,8 +107,10 @@ def validate(root):
         except (ValueError, TypeError) as e: errors.append(f"{p.name}: {e}")
     if errors: return {"errors": errors, "warnings": warnings}
     p = objects["project"]; fps, duration = p["fps"], p["duration_frames"]
+    no_voice=objects.get('production-requirements',{}).get('narration',{}).get('mode')=='none'
     t = objects.get("timeline")
     narration = objects.get("narration")
+    if no_voice and narration:errors.append('Project declares no narration but narration.json is present; reconcile the production intent and artifacts')
     cues = narration["segments"] if narration else []
     cue_map = {c["id"]: c for c in cues}
     if len(cue_map) != len(cues): errors.append("Duplicate narration cue IDs")
@@ -145,8 +150,10 @@ def validate(root):
             if e["id"] in event_ids: errors.append("Duplicate event ID")
             event_ids.add(e["id"])
             if e["target"] not in targets: errors.append(f"Unknown visual target: {e['target']}")
-            cue = cue_map.get(e["cue_id"])
-            if not cue: errors.append(f"Unknown narration cue: {e['cue_id']}")
+            cue = cue_map.get(e.get("cue_id"))
+            if not e.get('cue_id') and no_voice: pass  # Intentionally authored frame event, not invented speech alignment.
+            elif not e.get('cue_id'):errors.append(f"Event {e['id']}: narration cue_id required unless no narration is declared")
+            elif not cue: errors.append(f"Unknown narration cue: {e['cue_id']}")
             elif abs(e["start_frame"] - frame(cue["start_s"], fps)) > 1: errors.append(f"Event {e['id']}: not aligned to narration cue")
             elif abs(e["end_frame"] - frame(cue["end_s"], fps)) > 1: errors.append(f"Event {e['id']}: end not aligned to narration cue")
             if not (0 <= e["start_frame"] < e["end_frame"] <= duration): errors.append(f"Event {e['id']}: out of bounds")
@@ -180,7 +187,9 @@ def srt(cues):
 
 def align(root, audio, segments, method):
     """Import measured timestamps; never invent word alignment from script length."""
-    root = Path(root); p = read(root / "project.json"); audio = local(root, audio)
+    root = Path(root); p = read(root / "project.json")
+    if (root/'production-requirements.json').exists() and read(root/'production-requirements.json').get('narration',{}).get('mode')=='none':raise ValueError('Project declares no narration; update its intent and real cue mapping before importing a voice')
+    audio = local(root, audio)
     data = read(segments); cues = data["segments"] if isinstance(data, dict) else data
     clean = [{"id": c.get("id", f"cue-{i+1}"), "start_s": c.get("start_s", c.get("start")), "end_s": c.get("end_s", c.get("end")), "text": c["text"].strip()} for i, c in enumerate(cues)]
     n = {"audio": str(audio.relative_to(root.resolve())), "audio_sha256": digest(audio), "method": method, "segments": clean}
@@ -197,6 +206,7 @@ def align(root, audio, segments, method):
         t = read(root / "timeline.json")
         if schema_errors("timeline", t): raise ValueError("Invalid timeline schema")
         if t["fps"] != p["fps"] or t["duration_frames"] != p["duration_frames"]: raise ValueError("Timeline/project timebase mismatch")
+        if any(not e.get('cue_id') for e in t['events']):raise ValueError('Assign real cue_ids to timeline events before importing measured narration')
         unknown = {e["cue_id"] for e in t["events"]} - set(by)
         if unknown: raise ValueError(f"Timeline references absent cue IDs: {sorted(unknown)}; update cue mappings before import")
         for e in t["events"]:
@@ -307,11 +317,19 @@ def main():
     a = sub.add_parser("align"); a.add_argument("directory"); a.add_argument("--audio", required=True); a.add_argument("--segments", required=True); a.add_argument("--method", choices=["manual-reviewed", "asr-unreviewed", "synthetic-test", "provider-unreviewed"], required=True)
     a = sub.add_parser("script-check"); a.add_argument("script"); a.add_argument("--fps", type=int, default=30)
     sub.add_parser("doctor")
+    a = sub.add_parser("plan"); a.add_argument("directory"); a.add_argument("--requirements"); a.add_argument("--replace", action="store_true")
+    a = sub.add_parser("next"); a.add_argument("directory")
+    a = sub.add_parser("review"); a.add_argument("directory"); a.add_argument("--record", required=True)
     a = sub.add_parser("workflow-check"); a.add_argument("directory"); a.add_argument("--diagrams", "--anatomical", dest="anatomical", action="store_true"); a.add_argument("--generate-narration", action="store_true")
     a = p.parse_args()
     try:
         if a.command == "init": print(init(a.directory, a.title, a.format, a.fps, a.duration, a.language)); return 0
         if a.command == "doctor": result = doctor()
+        elif a.command in ["plan", "next", "review"]:
+            import director
+            if a.command == "plan": result = director.plan_project(a.directory, read(a.requirements) if a.requirements else None, a.replace)
+            elif a.command == "next": result = director.next_action(a.directory)
+            else: result = director.review(a.directory, read(a.record))
         elif a.command == "workflow-check": result = workflow_check(a.directory, a.anatomical, a.generate_narration)
         elif a.command == "validate": result = validate(a.directory)
         elif a.command == "status": result = statuses(a.directory)

@@ -101,8 +101,13 @@ def contact(video, output, duration, times=None):
     for i,t in enumerate(tiles):sheet.paste(t,((i%4)*480,(i//4)*h))
     Path(output).parent.mkdir(parents=True,exist_ok=True);sheet.save(output)
 
-def qa(root, video, calibration=False):
+def qa(root, video, calibration=False, silent=False):
     root=Path(root);p=read(root/'project.json'); report=validate(root)
+    if silent:
+        requirements=read(root/'production-requirements.json') if (root/'production-requirements.json').exists() else None
+        if requirements is not None and (not isinstance(requirements,dict) or not isinstance(requirements.get('narration'),dict)):raise ValueError('Valid narration intent is required for silent QA')
+        mix=read(root/'mix.json') if (root/'mix.json').exists() else {}
+        if calibration or (root/'narration.json').exists() or any(t.get('role')=='narration' for t in mix.get('tracks',[])) or requirements and requirements['narration']['mode']!='none':raise ValueError('Silent QA conflicts with declared narration/calibration; do not hide a missing voice stream')
     data=probe(video);streams=data['streams'];v=next((s for s in streams if s['codec_type']=='video'),None);a=next((s for s in streams if s['codec_type']=='audio'),None)
     errors=report['errors'];warnings=report['warnings'];expected=p['duration_frames']/p['fps']
     if not v:errors.append('No video stream')
@@ -112,13 +117,14 @@ def qa(root, video, calibration=False):
         if abs(num/den-p['fps'])>.001:errors.append('Video FPS mismatch')
         if 'nb_frames' in v and int(v['nb_frames'])!=p['duration_frames']:errors.append('Video frame count mismatch')
         if abs(float(v.get('duration',data['format']['duration']))-expected)>1/p['fps']+.002:errors.append('Video duration mismatch')
-    if not a:errors.append('No audio stream')
-    elif v:
+    if silent and a:errors.append('Explicitly silent output contains an audio stream')
+    if not a and not silent:errors.append('No audio stream')
+    elif a and v:
         if abs(float(a.get('start_time',0))-float(v.get('start_time',0)))>1/p['fps']:errors.append('Audio/video stream start skew')
         if abs(float(a.get('duration',0))-expected)>2/p['fps']+.01:errors.append('Audio duration mismatch')
     # Decode every frame/sample; successful probing alone does not verify the media.
     run(['ffmpeg','-v','error','-xerror','-i',str(video),'-f','null','-'])
-    report.update({'video_sha256':digest(video),'input_hashes':fingerprints(root,'render'),'expected_seconds':expected,'probe':data,'visual_review':'pending human approval','semantic_narration_alignment':'requires listening and representative frame review'})
+    report.update({'video_sha256':digest(video),'input_hashes':fingerprints(root,'render'),'expected_seconds':expected,'probe':data,'audio_intent':'explicitly silent' if silent else 'audio required','visual_review':'pending human approval','semantic_narration_alignment':'not applicable to explicitly silent output' if silent else 'requires listening and representative frame review'})
     if a:
         measured=loudness(video);report['loudness']=measured
         if float(measured['input_tp'])>-.8:errors.append('True peak exceeds -0.8 dBTP')
@@ -139,14 +145,14 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);s=p.add_subparsers(dest='command',required=True)
     for n in ['test-audio','mix']:s.add_parser(n).add_argument('project')
     a=s.add_parser('mux');a.add_argument('video');a.add_argument('audio');a.add_argument('output')
-    a=s.add_parser('qa');a.add_argument('project');a.add_argument('video');a.add_argument('--calibration',action='store_true')
+    a=s.add_parser('qa');a.add_argument('project');a.add_argument('video');a.add_argument('--calibration',action='store_true');a.add_argument('--silent',action='store_true',help='Intentionally soundless output; rejects projects declaring narration')
     a=p.parse_args()
     try:
         if a.command=='test-audio':print(test_audio(a.project))
         elif a.command=='mix':print(mix(a.project))
         elif a.command=='mux':mux(a.video,a.audio,a.output)
         else:
-            r=qa(a.project,a.video,a.calibration);print(json.dumps({k:r[k] for k in ['status','errors','warnings']},indent=2));return int(r['status']!='pass')
+            r=qa(a.project,a.video,a.calibration,a.silent);print(json.dumps({k:r[k] for k in ['status','errors','warnings']},indent=2));return int(r['status']!='pass')
         return 0
     except (OSError,ValueError,KeyError,subprocess.CalledProcessError) as e:
         print(f'ERROR: {e}',file=sys.stderr)

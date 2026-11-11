@@ -34,3 +34,9 @@ To install, validate, list, update or uninstall the supplied Anatomy integration
 ## Adopted animation runtime
 
 `python scripts/animation.py doctor` reports dependency/credential presence without exposing credentials. `build SKILL SPEC [--snap TIMES]` runs four JSON-driven templates. `init stick-figure|cartoon-animation DIR [--example]` creates a fresh local engine project. `sync DIR --words FILE --audio FILE --method METHOD` imports measured narration; --reference supports matching-word take warps in the stick engine. `render DIR [--snap TIMES] [--out PATH] [--audio MIX]` captures frames or a full MP4. --replace is explicit for existing generated timing/media. Read the shared animation workflow for constraints and review.
+
+## Production director
+
+`studio.py plan PROJECT --requirements FILE` validates interpreted requirements and writes production-requirements.json and production-plan.json/md. It never calls a model or service. `--replace` explicitly replans changed requirements while keeping writing/media/review history. `studio.py next PROJECT` reports the earliest current production phase, selected tools, missing evidence and dependency notes. `studio.py review PROJECT --record FILE` records all criterion observations with file hashes; unresolved criteria, missing/stale evidence and failed relevant contracts block a pass. Follow the production-director reference for the record format and real inspection requirements. This is a review protocol, not an automatic creative grader or render scheduler.
+
+Intentionally soundless inserts: `python skills/studio-toolkit/scripts/media.py qa PROJECT VIDEO --silent`. Missing audio still fails by default; --silent rejects declared narration or calibration projects.

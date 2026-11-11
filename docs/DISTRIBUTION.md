@@ -7,3 +7,5 @@ The ChatGPT artifact is a single skill ZIP with exactly one SKILL.md, specialist
 Codex installation does not automatically install anything in ChatGPT. No marketplace submission or listing approval is claimed. The package can be structurally tested by extracting to an isolated directory and running scripts/studio.py init/validate; this is included in regression testing.
 
 The 0.4 package includes all six animation workflows and their shared executable runtime as references, while retaining exactly one SKILL.md. Node dependencies and models are excluded; run the packaged runtime setup in the host environment. The package does not install itself into a ChatGPT account.
+
+The 0.5 package also includes the production-director protocol, schemas and plan/next/review helper. It requires actual agent inspection; importing a plan is not creative approval, and no ChatGPT account installation is implied.

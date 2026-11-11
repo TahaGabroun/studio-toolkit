@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "idea": "An original character-led what-if explainer",
+  "audience": "General viewers watching a vertical short",
+  "goal": "Understand the mechanism through expressive poses and a clear payoff",
+  "scope": "full-video",
+  "style": "3d-cartoon",
+  "needs": ["characters"],
+  "narration": {"mode": "generate"},
+  "allow_upscale": false,
+  "scenes": [
+    {"id": "hook", "purpose": "Make the question visible through a character action", "needs": ["characters"]},
+    {"id": "payoff", "purpose": "Demonstrate the answer causally rather than adding decorative effects", "needs": ["characters"]}
+  ],
+  "assumptions": ["Native output requires an authored adaptation of the supplied 720p engine and a motion proof."]
+}

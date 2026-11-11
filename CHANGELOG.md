@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0 — 2026-11-11
+
+Added a production-director flow: structured brief interpretation, requirement-based master/scene routing, native-format constraints, short visual proofs, measured-narration animatics, evidence-backed review gates and selective resumption. It records quality assessments without claiming an automatic professional score or requiring repeated user permissions. Existing skills, artifact checkpoints and Anatomy/ElevenLabs preferences remain compatible.
+
 ## 0.4.0 — 2026-11-10
 
 Adopted six cartoon/template animation skills from artemnovitckii/claude-animation-skills with MIT/OFL attribution and retained rigs, props, textures, templates and sound code. Added a shared portable runtime, reproducible dependencies, explicit measured-audio import, deterministic capture and media QA. Kept all existing skill IDs and Anatomy/ElevenLabs preferences; added neutral aliases and bundled the same workflows for ChatGPT.

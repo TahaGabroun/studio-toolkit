@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "idea": "An Arabic educational explanation of a biological process",
+  "audience": "Students who need clear structure-to-function relationships",
+  "goal": "Identify the narrated structures and understand each causal change",
+  "scope": "full-video",
+  "style": "scientific",
+  "needs": ["anatomy", "mechanism"],
+  "narration": {"mode": "generate"},
+  "allow_upscale": false,
+  "scenes": [
+    {"id": "orientation", "purpose": "Identify the structures used by the explanation", "needs": ["anatomy"]},
+    {"id": "mechanism", "purpose": "Show the narrated relationship changing without misleading geometry", "needs": ["anatomy", "mechanism"]}
+  ],
+  "assumptions": ["Specific biological claims and pronunciation still require research/review."]
+}

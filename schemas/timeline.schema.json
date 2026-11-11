@@ -79,7 +79,6 @@
           "start_frame",
           "end_frame",
           "target",
-          "cue_id",
           "effect"
         ],
         "additionalProperties": false

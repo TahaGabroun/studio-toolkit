@@ -9,6 +9,12 @@ Read [pipeline contracts](references/pipeline.md) before creating production art
 
 For future animated anatomical, biological or technical mechanism diagrams, use the anatomy skill to design the biological structures, then animate its approved assets in the selected renderer. For new production narration, use ElevenLabs. Read [production preferences](references/production-preferences.md) for discovery, credentials/voice setup, measured timing and cache reuse. Missing anatomy skill or ElevenLabs access is a dependency to resolve, not permission to silently substitute generic diagrams or test voices. Existing approved recordings and explicit user overrides take precedence.
 
+## Direct the production first
+
+For a complete video or substantial production, read [the production-director workflow](references/production-director.md). Interpret the idea, audience, communication goal, narration and constraints into production-requirements.json, then run `studio.py plan PROJECT`. This selects relevant skills and one master renderer, assigns scene-specific roles and creates evidence-backed review gates. Run `studio.py next PROJECT` before each major phase. Use only affected work for a narrow edit; do not force every tool onto every request.
+
+Content → art-direction/motion proof → measured narration and timed animatic → final animation/audio/render → final QA → delivery. Rough storyboards can come early; exact visual timing follows the actual take. Use Anatomy for matching structures, cartoons for character-led beats and data graphics for real data. Keep a consistent visual language across those components. Review the hardest scene at full/mobile size before committing the entire production. Gates are reviews the agent performs, not recurring user-permission prompts. Record real observations with `studio.py review`; a file or automatic score alone cannot establish professional quality.
+
 ## Route the request
 
 | Intent | Specialist | Handoff |
@@ -36,9 +42,9 @@ Read the selected sibling's SKILL.md before specialist work. In the standalone p
 Infer brief, audience, locale, deliverable, aspect ratio, target duration, existing narration and asset rights from the request. Ask only for essential missing inputs. Default to landscape, 30 fps, English; prerecorded narration fixes the spoken content unless changes are authorized.
 
 1. Run `python3 <this-skill>/scripts/studio.py init PROJECT --title "Title" --format landscape --duration 60` for a new project. Existing projects: validate and inspect `status` first.
-2. Develop idea → research → strategy → script → storyboard → design → assets → animation. For structured explanatory diagrams, read the anatomy skill before visual planning and preserve its diagram quality in the animated implementation. Each output follows [schemas](references/schemas/project.schema.json); load the relevant schema rather than every file. Mark a stage complete only when its files are real and inspected.
+2. Develop idea → research/strategy → script, then the art direction and a representative visual/motion proof. Review content and look before full production. Use the director plan to select scene methods and avoid unrelated template styles. For structured explanatory diagrams, read the anatomy skill before visual planning and preserve its diagram quality in the animated implementation. Each output follows [schemas](references/schemas/project.schema.json); load the relevant schema rather than every file. Mark a stage complete only when its files are real and inspected.
 3. Generate new narration through ElevenLabs with provider timings, preserving completed responses instead of paying for unchanged speech again. Import its cues with `--method provider-unreviewed` until checked. For supplied recordings use `align PROJECT --audio assets/narration.wav --segments segments.json --method manual-reviewed`. MP3/M4A also work through FFmpeg. Preserve raw ASR output as `asr-unreviewed`; reuse approved script and asset hashes.
-4. Connect cue IDs to exact visible target IDs. Use progressive construction, focus, annotations or tracking. Build captions and audio placement from the same timeline. Do not invent equally spaced word timings.
+4. Build/review the measured storyboard and animatic before final assets and animation. Connect cue IDs to exact visible target IDs. Use progressive construction, focus, annotations or tracking. Build captions and audio placement from the same timeline. Do not invent equally spaced word timings.
 5. Run audio mixing, rendering, full-media decode and QA. Inspect representative frames and listen to the final audio. Automated pass, agent inspection and human approval are separate states.
 6. Prepare titles, description, thumbnail brief, captions, sources and licensing notes in publication.md. Account publication requires user authorization; prior explicit authorization remains valid. Preparing a publication package never implies that an upload occurred.
 

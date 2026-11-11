@@ -11,3 +11,5 @@ Run `.venv/bin/python scripts/validate_repository.py` and `.venv/bin/python -m u
 Public contents must exclude dependency folders, caches, absolute private paths, secrets and local installation links. Honor user authorization already given for publishing. No force push or replacement of unrelated work.
 
 Animation runtime changes require real representative captures, out-of-order seek checks and full media decoding. Runtime source is shared under the orchestrator reference directory; never package node_modules, downloaded models or local dependency symlinks. Preserve scientific casing and Arabic diacritics in captions.
+
+For substantial productions, follow the production-director requirement/scene routing and evidence-backed reviews before full animation/rendering. These are agent quality checks, not recurring user-permission prompts. Never insert auto-passing review observations into a demo or treat plan generation as creative approval. Keep content-bearing requirement changes distinct from pure visual replans; preserve existing approved writing and cached voice.

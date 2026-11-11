@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "production-requirements",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "idea": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "enum": [
+        "full-video",
+        "insert",
+        "edit"
+      ]
+    },
+    "style": {
+      "enum": [
+        "auto",
+        "documentary",
+        "scientific",
+        "3d-cartoon",
+        "stick-figure",
+        "minimal"
+      ]
+    },
+    "needs": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "anatomy",
+          "mechanism",
+          "data",
+          "route",
+          "layers",
+          "characters",
+          "footage",
+          "screen",
+          "typography",
+          "raster-assets"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "narration": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "generate",
+            "provided",
+            "none"
+          ]
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "mode"
+      ],
+      "additionalProperties": false
+    },
+    "renderer": {
+      "enum": [
+        "auto",
+        "html",
+        "remotion"
+      ]
+    },
+    "allow_upscale": {
+      "type": "boolean"
+    },
+    "real_geography": {
+      "type": "boolean"
+    },
+    "accurate_layers": {
+      "type": "boolean"
+    },
+    "data_source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "geography_source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "channel_strategy": {
+      "type": "boolean"
+    },
+    "additional_formats": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "landscape",
+          "vertical",
+          "square",
+          "4k"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "needs": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "anatomy",
+                "mechanism",
+                "data",
+                "route",
+                "layers",
+                "characters",
+                "footage",
+                "screen",
+                "typography",
+                "raster-assets"
+              ]
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "purpose",
+          "needs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "idea",
+    "audience",
+    "goal",
+    "scope",
+    "style",
+    "needs",
+    "narration"
+  ],
+  "additionalProperties": false
+}

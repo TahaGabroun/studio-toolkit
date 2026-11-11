@@ -39,3 +39,5 @@ python scripts/studio.py align PROJECT --audio assets/elevenlabs/REQUEST_HASH/CA
 The generation helper does not overwrite approved narration.json, captions or timeline. After actual review, use manual-reviewed on import. Preserve word timestamps for phrase-level captions and concept focus, especially mixed Arabic/English scientific terminology. Mix and render only after these artifacts agree. Changing production-config.json invalidates storyboard and downstream checkpoints while retaining approved research and scripts for revalidation/reuse.
 
 An explicit --import-response corrected.json supersedes a failed cached response while retaining the old response in cache history. Renamed scene IDs create a new cue candidate while reusing the same paid speech response. The candidate hash includes the scene mapping and provider response; edited candidates are preserved instead of overwritten.
+
+When a director plan exists, the speech helper checks that new generation is actually requested and that the content review is current before buying or importing speech. It preserves supplied-recording/no-voice direction. Dry-run remains a planning-only request inspection.
